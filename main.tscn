@@ -1,11 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://xv2vn41vdrn0"]
 
-[ext_resource type="PackedScene" uid="uid://cbxpdsf8peyu2" path="res://scenes/characters/nerveending.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cbsi7lbts3p58" path="res://scenes/characters/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://b8slis7sskaom" path="res://scenes/characters/red_fly.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dc1ucxoretmma" path="res://scenes/characters/selfless_knight.tscn" id="2_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(379, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(20, 143)
+size = Vector2(20, 254.75)
 
 [node name="Main" type="Node2D"]
 
@@ -15,16 +17,35 @@ zoom = Vector2(3, 3)
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="World"]
+position = Vector2(-202, -112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D3"]
+position = Vector2(204.5, -1.375)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="World/StaticBody2D3"]
+position = Vector2(-5, 215)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D3/StaticBody2D3"]
+position = Vector2(204.5, -1.375)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="World"]
+position = Vector2(-219, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D2"]
+position = Vector2(25, -1.375)
+shape = SubResource("RectangleShape2D_lquwl")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="World"]
 position = Vector2(168, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(25, -1.375)
 shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="Nerveending" parent="World" instance=ExtResource("1_0xm2m")]
-position = Vector2(58, 0)
 
 [node name="Player" parent="World" instance=ExtResource("1_ig7tw")]
 
-[node name="RedFly" parent="World" instance=ExtResource("3_h2yge")]
-position = Vector2(-103, -63)
+[node name="Knight" parent="World" instance=ExtResource("2_0xm2m")]
+position = Vector2(-102, -40)

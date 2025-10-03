@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc1ucxoretmma"]
+
+[ext_resource type="PackedScene" uid="uid://bv8yyy7lo8rko" path="res://scenes/characters/knight.tscn" id="1_pr68p"]
+[ext_resource type="Texture2D" uid="uid://c2amkxgvy0quk" path="res://graphics/characters/knight/selfless_knight_head.tres" id="2_mlxtn"]
+
+[node name="Knight" instance=ExtResource("1_pr68p")]
+velocityRefValue1 = 110.0
+velocityRefValue2 = 250.0
+
+[node name="sprhead" parent="." index="1"]
+texture = ExtResource("2_mlxtn")

@@ -39,11 +39,16 @@ public partial class Player : Character
         //TEMP
         statusF["bombs"] = 99;
 
+        //TEMP
+        WorldUtilsRandom.Init(12345);
+        WorldUtilsRng.Init(12345 * 31);
+
         //maybe TEMP
         WorldUtilsBlackboard.Set("player_instance", this);
+        WorldUtilsBlackboard.Set("decision_frequency", .2f);
 
         AddBehavior(new PlayerMoveBehavior(this, moveAcceleration, velocityRefValue), BehaviorType.Move);
-        AddBehavior(new PlayerEmitBehavior(this, emitCDRefValue), BehaviorType.Emit);
+        AddBehavior(new PlayerEmitBehavior(this, emitCDRefValue), BehaviorType.Attack);
         AddBehavior(new PlayerHPBehavior(
             this,
             6,

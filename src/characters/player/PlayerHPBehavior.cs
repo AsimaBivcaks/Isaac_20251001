@@ -18,7 +18,6 @@ public class PlayerHPBehavior : CharacterHPBehavior
         if (invincibilityTimer > 0)
             return false;
         HP -= damageData.damageAmount;
-        //GD.Print($"Player took {damageData.damageAmount} damage, current HP: {HP}/{MaxHP}");
         // Apply knockback
         statusV["inertia"] += damageData.knockbackVector;
         invincibilityTimer = invincibilityTime;

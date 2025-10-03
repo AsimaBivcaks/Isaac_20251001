@@ -1,9 +1,10 @@
 
 public enum BehaviorType{
     Move,
-    Emit,
+    Dash,
+    Attack,
     Melee,
-    HP,
-    PlayerBomb,
     Summon,
+    PlayerBomb,
+    HP,
 }
