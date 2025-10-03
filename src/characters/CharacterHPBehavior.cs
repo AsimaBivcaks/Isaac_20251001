@@ -29,6 +29,7 @@ public abstract class CharacterHPBehavior : CharacterBehavior
 
     public void TakeDamage(DamageData damageData)
     {
+        if (self.statusF["pause"] > 0.5f) return;
         if (ProcessDamage(damageData))
         {
             if(redBlink != null)

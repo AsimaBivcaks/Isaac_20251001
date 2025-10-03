@@ -1,3 +1,12 @@
+//Exclusive status for Player:
+//    move_speed: float, multiplier for movement speed
+//    fire_rate: float, multiplier for firing rate
+//    damage: float, additional damage added to each projectile
+//    range: float, multiplier for projectile range
+//    luck: float, multiplier for luck-based effects
+//    bombs: float, number of bombs the player has
+//    emitted_this_frame: float, 1 if the player has emitted a projectile this frame, otherwise 0
+
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -19,6 +28,7 @@ public partial class Player : Character
         base._Ready();
 
         anim = GetNode<PlayerAnimationController>(animationController);
+        anim.player = this;
         
         statusF["move_speed"] = 1.0f;
         statusF["fire_rate"] = 1.0f;
@@ -29,13 +39,19 @@ public partial class Player : Character
         //TEMP
         statusF["bombs"] = 99;
 
+        //maybe TEMP
+        WorldUtilsBlackboard.Set("player_instance", this);
+
         AddBehavior(new PlayerMoveBehavior(this, moveAcceleration, velocityRefValue), BehaviorType.Move);
         AddBehavior(new PlayerEmitBehavior(this, emitCDRefValue), BehaviorType.Emit);
         AddBehavior(new PlayerHPBehavior(
             this,
             6,
             Callable.From(() => {
-                GD.Print("Player Died");
+                anim.ShowSpecial(3, 3f, Callable.From(() => {
+                    //GetTree().ChangeSceneToFile("res://scenes/menus/GameOver.tscn");
+                    GetTree().Quit();
+                }));
             })
         ), BehaviorType.HP);
         AddBehavior(new PlayerBombBehavior(this), BehaviorType.PlayerBomb);

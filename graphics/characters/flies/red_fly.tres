@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dfmre7yxbx6sj"]
+
+[ext_resource type="Texture2D" uid="uid://ifv6ayjxvpn3" path="res://graphics/characters/flies/monster_010_fly.png" id="1_wdqub"]
+
+[resource]
+atlas = ExtResource("1_wdqub")
+region = Rect2(0, 32, 128, 24)

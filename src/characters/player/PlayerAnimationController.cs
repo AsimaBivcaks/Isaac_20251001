@@ -17,6 +17,9 @@ public partial class PlayerAnimationController : Node2D
     private AnimationTree headAnim;
     public AnimationPlayer HitAnim { get; private set; }
     private AnimationNodeStateMachinePlayback headState;
+
+    public Player player { private get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -71,5 +74,21 @@ public partial class PlayerAnimationController : Node2D
             headState.Travel(animname + "e");
         else
             headState.Travel(animname);
+    }
+
+    public void ShowSpecial(int frame, float duration, Callable? callback=null)
+    {
+        special.Frame = frame;
+        special.Visible = true;
+        body.Visible = false;
+        head.Visible = false;
+        player.statusF["pause"] = 1;
+        GetTree().CreateTimer(duration).Timeout += () => {
+            player.statusF["pause"] = 0;
+            callback?.Call();
+            special.Visible = false;
+            body.Visible = true;
+            head.Visible = true;
+        };
     }
 }

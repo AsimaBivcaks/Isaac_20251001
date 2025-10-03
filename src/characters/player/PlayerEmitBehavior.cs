@@ -28,6 +28,8 @@ public class PlayerEmitBehavior : CharacterBehavior
         
         if (emitCDTimer >= 0) emitCDTimer -= delta;
         
+        if(self.statusF["pause"] > .5f) return;
+        
         //when both directions are pressed, use the last pressed direction,
         //vertical inputs over horizontal ones.
         //this is not exactly how isaac works

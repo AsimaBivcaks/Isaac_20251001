@@ -29,6 +29,14 @@ public class PlayerMoveBehavior : CharacterBehavior
     {
         base._Process(delta);
 
+        if(self.statusF["pause"] > .5f){
+            self.Velocity = self.Velocity.MoveToward(Vector2.Zero, (float)(delta * moveAcceleration));
+            self.Move(delta);
+            statusV["facing"] = new Vector2(0,1);
+            statusV["move"] = Vector2.Zero;
+            return;
+        }
+
         float vlen = self.Velocity.Length();
         if (vlen < 0.1f) vlen = 0.1f; //avoid NaN
         anim.SetBody(self.Velocity/vlen);

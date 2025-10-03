@@ -17,7 +17,7 @@ public partial class Tear : Projectile
 
     protected override void HitTarget(Character target)
     {
-        if(statusF["disabled"] == 1) return;
+        if(statusF["disabled"] > .5f) return;
         target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(
             new DamageData(attacker, (int)statusF["damage"], DamageType.NORMAL, Velocity.Normalized() * knockbackForce)
         );
@@ -45,7 +45,7 @@ public partial class Tear : Projectile
     {
         base._PhysicsProcess(delta);
 
-        if(statusF["disabled"] == 1) return;
+        if(statusF["disabled"] > .5f) return;
 
         Vector2 displacement = new Vector2(0, zposVirtual) *
             dropCurve.Sample(statusF["distance_traveled"] / statusF["range"]);

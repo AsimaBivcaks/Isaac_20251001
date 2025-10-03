@@ -41,6 +41,8 @@ public class PlayerBombBehavior : CharacterBehavior
 
         if(bombCDTimer > 0.0f)
             bombCDTimer -= (float)delta;
+
+        if(self.statusF["pause"] > .5f) return;
         
         if(Input.IsActionJustPressed("bomb"))
             UseBomb();

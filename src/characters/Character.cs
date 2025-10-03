@@ -1,16 +1,11 @@
+//Status for all Character:
+//  pause: float, 1 for paused, 0 for not paused
+//  inertia: Vector2, external forces applied to the character, decays over time
+
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-public enum BehaviorType{
-    Move,
-    Emit,
-    Melee,
-    HP,
-    PlayerBomb,
-    Summon,
-}
 
 public abstract partial class Character : CharacterBody2D
 {
@@ -75,6 +70,7 @@ public abstract partial class Character : CharacterBody2D
         Mount = GetParent<Node>();
 
         statusV["inertia"] = new Vector2(0, 0);
+        statusF["pause"] = 0; //1 for paused, 0 for not paused
     }
     
     protected void EndReady(){
