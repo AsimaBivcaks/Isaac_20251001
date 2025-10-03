@@ -22,7 +22,7 @@ public partial class Player : Character
         
         statusF["move_speed"] = 1.0f;
         statusF["fire_rate"] = 1.0f;
-        statusF["damage"] = 1.0f;
+        statusF["damage"] = 0.0f;
         statusF["range"] = 1.0f;
         statusF["luck"] = 1.0f;
 
@@ -33,7 +33,7 @@ public partial class Player : Character
         AddBehavior(new PlayerEmitBehavior(this, emitCDRefValue), BehaviorType.Emit);
         AddBehavior(new PlayerHPBehavior(
             this,
-            5,
+            6,
             Callable.From(() => {
                 GD.Print("Player Died");
             })
@@ -43,13 +43,5 @@ public partial class Player : Character
         projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>("res://scenes/projectiles/Tear.tscn"));
 
         EndReady();
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-
-        foreach (CharacterBehavior behavior in behaviors)
-            behavior._Process(delta);
     }
 }

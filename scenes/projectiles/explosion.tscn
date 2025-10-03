@@ -3,6 +3,21 @@
 [ext_resource type="Script" uid="uid://ckcom45061gjv" path="res://src/projectiles/Explosion.cs" id="1_5l78t"]
 [ext_resource type="Texture2D" uid="uid://6y1egnmyhvyn" path="res://graphics/projectiles/explosion.tres" id="2_lbule"]
 
+[sub_resource type="Animation" id="Animation_pn0yx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_tvjf5"]
 resource_name = "default"
 length = 0.5333367
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "values": [8, 9, 10, 11, 12, 13, 14, 15, 16, 0, 1, 2, 3, 4, 5, 6]
 }
 
-[sub_resource type="Animation" id="Animation_pn0yx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a36qc"]
 _data = {
 &"RESET": SubResource("Animation_pn0yx"),
@@ -45,6 +45,7 @@ radius = 115.00435
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_5l78t")
+KnockbackRefValue = 30.0
 animationController = NodePath("AnimationPlayer")
 wallLayer = 0
 targetLayer = 10

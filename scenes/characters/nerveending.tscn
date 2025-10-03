@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbxpdsf8peyu2"]
+
+[ext_resource type="Script" uid="uid://dbjbm0e5akho3" path="res://src/characters/nerveending/Nerveending.cs" id="1_bpgpc"]
+[ext_resource type="Texture2D" uid="uid://dmmvk73gtjrhs" path="res://graphics/characters/nerveending/nerveending.tres" id="2_mbsta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(23, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xm2m"]
+height = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpgpc"]
+atlas = ExtResource("2_mbsta")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbsta"]
+atlas = ExtResource("2_mbsta")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb3ui"]
+atlas = ExtResource("2_mbsta")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmcxv"]
+atlas = ExtResource("2_mbsta")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxh3m"]
+atlas = ExtResource("2_mbsta")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3tgb"]
+atlas = ExtResource("2_mbsta")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4m04"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpgpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbsta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb3ui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmcxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxh3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3tgb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Nerveending" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_bpgpc")
+meleeAreaPath = NodePath("meleeArea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_h2yge")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="meleeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="meleeArea"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_0xm2m")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_s4m04")
+autoplay = "default"

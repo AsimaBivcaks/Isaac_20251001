@@ -38,7 +38,7 @@ public partial class Explosion : Projectile
                     null,
                     DamageRefValue,
                     DamageType.EXPLOSION,
-                    (Position - target.Position).Normalized()
+                    (target.Position - Position).Normalized() * KnockbackRefValue
                 );
                 target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(damage);
             }

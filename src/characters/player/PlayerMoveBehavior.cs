@@ -69,6 +69,6 @@ public class PlayerMoveBehavior : CharacterBehavior
         statusV["facing"] = facing;
         statusV["move"] = moveDir;
 
-        self.MoveAndSlide();
+        self.Move(delta);
     }
 }

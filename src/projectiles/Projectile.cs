@@ -40,7 +40,7 @@ public abstract partial class Projectile : Node2D
         hitbox.CollisionMask = wallLayer | targetLayer;
         hitbox.BodyEntered += (Node2D body) => {
             if(body is CharacterBody2D target){
-                if((target.CollisionLayer & targetLayer) != 0){
+                if((target.CollisionLayer & targetLayer) != 0 && target is Character){
                     HitTarget((Character)target);
                     if(destroyWhenHit)
                         Destroy();

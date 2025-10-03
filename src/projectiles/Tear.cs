@@ -5,6 +5,7 @@ public partial class Tear : Projectile
 {
     [Export] public float zposVirtual = 10.0f;
     [Export] public Curve dropCurve;
+    [Export] public float knockbackForce = 2f;
 
     public override void _Ready()
     {
@@ -18,20 +19,26 @@ public partial class Tear : Projectile
     {
         if(statusF["disabled"] == 1) return;
         target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(
-            new DamageData(attacker, (int)statusF["damage"], DamageType.NORMAL, Vector2.Zero)
+            new DamageData(attacker, (int)statusF["damage"], DamageType.NORMAL, Velocity.Normalized() * knockbackForce)
         );
         statusF["disabled"] = 1;
     }
 
     protected override void Destroy()
     {
-        if(statusF["disabled"] == 1) return;
-        statusF["disabled"] = 1;
+        if(statusF.ContainsKey("destroyed")) return;
+        statusF["destroyed"] = 1;
         anim.Play("hit");
-        Disable();
+        Velocity = Vector2.Zero;
+        //Disable();
         anim.AnimationFinished += (StringName animName) => {
-            QueueFree();
+            AfterAnimHit();
         };
+    }
+
+    private void AfterAnimHit()
+    {
+        QueueFree();
     }
 
     public override void _PhysicsProcess(double delta)

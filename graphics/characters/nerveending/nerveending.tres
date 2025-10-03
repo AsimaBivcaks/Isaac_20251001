@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dmmvk73gtjrhs"]
+
+[ext_resource type="Texture2D" uid="uid://d4bww07j7iot" path="res://graphics/characters/nerveending/monster_231_nerveending.png" id="1_l344b"]
+
+[resource]
+atlas = ExtResource("1_l344b")
+region = Rect2(0, 0, 192, 64)

@@ -6,6 +6,7 @@ using System.Linq;
 public enum BehaviorType{
     Move,
     Emit,
+    Melee,
     HP,
     PlayerBomb,
     Summon,
@@ -72,6 +73,8 @@ public abstract partial class Character : CharacterBody2D
 
         //TEMP
         Mount = GetParent<Node>();
+
+        statusV["inertia"] = new Vector2(0, 0);
     }
     
     protected void EndReady(){
@@ -83,7 +86,17 @@ public abstract partial class Character : CharacterBody2D
     {
         base._PhysicsProcess(delta);
 
-        foreach (CharacterBehavior behavior in behaviors)
+        statusV["inertia"] = statusV["inertia"].MoveToward(new Vector2(0, 0), 80 * (float)delta);
+
+        foreach (CharacterBehavior behavior in behaviors)   
             behavior._Process(delta);
+    }
+
+    public void Move(double delta, bool considerinertia=true){
+        Vector2 v2 = Velocity;
+        if(considerinertia)
+            Velocity += statusV["inertia"];
+        MoveAndSlide();
+        Velocity = v2;
     }
 }

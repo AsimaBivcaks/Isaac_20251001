@@ -4,6 +4,7 @@ using System;
 public class PlayerHPBehavior : CharacterHPBehavior
 {
     private AnimationPlayer anim;
+    private Tween hitTween;
 
     [Export] private double invincibilityTime = 1.0f;
     private double invincibilityTimer = 0.0f;
@@ -12,17 +13,27 @@ public class PlayerHPBehavior : CharacterHPBehavior
     {
     }
 
-    protected override void ProcessDamage(DamageData damageData)
+    protected override bool ProcessDamage(DamageData damageData)
     {
         if (invincibilityTimer > 0)
-            return;
+            return false;
         HP -= damageData.damageAmount;
         //GD.Print($"Player took {damageData.damageAmount} damage, current HP: {HP}/{MaxHP}");
         // Apply knockback
-        self.Velocity += damageData.knockbackVector;
+        statusV["inertia"] += damageData.knockbackVector;
         invincibilityTimer = invincibilityTime;
-        if(damageData.damageAmount > 0)
-            anim.Play("hit");
+        if(damageData.damageAmount > 0){
+            if(hitTween != null)
+            {
+                hitTween.Kill();
+            }
+            hitTween = self.GetTree().CreateTween();
+            hitTween.TweenCallback(Callable.From(() => {
+                anim.Play("hit");
+            })).SetDelay(REDBLINK_DURATION);
+            return true;
+        }
+        return false;
     }
 
     public override void _Ready()
