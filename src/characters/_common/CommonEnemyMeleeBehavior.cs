@@ -15,6 +15,7 @@ public class CommonEnemyMeleeBehavior : CharacterBehavior
         base._Ready();
         
         meleeArea.BodyEntered += (Node2D body) => {
+            if(statusF["pause"] > .5f) return;
             if (body is Character target)
             {
                 DamageData damage = new DamageData(

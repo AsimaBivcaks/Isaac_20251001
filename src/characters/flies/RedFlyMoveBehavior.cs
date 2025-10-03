@@ -16,6 +16,7 @@ public class RedFlyMoveBehavior : CharacterBehavior
     public override void _Process(double delta)
     {
         base._Process(delta);
+        if (statusF["pause"] > .5f) return;
 
         Vector2 direction = player.GlobalPosition - self.GlobalPosition;
         if(direction.Length() > 2f)
