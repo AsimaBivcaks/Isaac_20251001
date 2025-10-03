@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class CharacterBehavior
 {
-    public Player self;
+    public Character self;
     protected Dictionary<string, float> statusF => self.statusF;
     protected Dictionary<string, Vector2> statusV => self.statusV;
 
-    public CharacterBehavior(Player _self)
+    public CharacterBehavior(Character _self)
     {
         self = _self;
     }

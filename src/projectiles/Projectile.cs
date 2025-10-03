@@ -11,6 +11,7 @@ public abstract partial class Projectile : Node2D
     [Export] public float SpeedRefValue = 250.0f;
     [Export] public float RangeRefValue = 100.0f;
     [Export] public int DamageRefValue = 1;
+    [Export] public float KnockbackRefValue = 0.0f;
     [Export] public NodePath animationController;
 
     [ExportGroup("Collision")]
@@ -26,7 +27,7 @@ public abstract partial class Projectile : Node2D
     public Vector2 Velocity = Vector2.Zero;
     protected Vector2 xyPosition;
 
-    protected abstract void HitTarget(Player target);
+    protected abstract void HitTarget(Character target);
     protected abstract void Destroy();
 
     public override void _Ready()
@@ -40,7 +41,7 @@ public abstract partial class Projectile : Node2D
         hitbox.BodyEntered += (Node2D body) => {
             if(body is CharacterBody2D target){
                 if((target.CollisionLayer & targetLayer) != 0){
-                    HitTarget((Player)target);
+                    HitTarget((Character)target);
                     if(destroyWhenHit)
                         Destroy();
                 }
@@ -57,8 +58,8 @@ public abstract partial class Projectile : Node2D
             statusF["range"] = 1.0f;
         statusF["range"] *= RangeRefValue;
         if(!statusF.ContainsKey("damage"))
-            statusF["damage"] = 1.0f;
-        statusF["damage"] *= DamageRefValue;
+            statusF["damage"] = .0f;
+        statusF["damage"] =(int)( DamageRefValue * Mathf.Sqrt(1 + 1.2f * statusF["damage"]) );
         if(!statusF.ContainsKey("speed"))
             statusF["speed"] = 1.0f;
         statusF["speed"] *= SpeedRefValue;
@@ -94,5 +95,6 @@ public abstract partial class Projectile : Node2D
         statusF["disabled"] = 1;
         Velocity = Vector2.Zero;
         hitbox.Monitoring = false;
+        hitbox.Monitorable = false;
     }
 }

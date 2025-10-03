@@ -3,12 +3,13 @@ using System;
 
 public abstract class CharacterHPBehavior : CharacterBehavior
 {
+
     public int MaxHP { get; protected set; }
     public int HP { get; protected set; }
 
     public Callable? DeathCallback;
 
-    public CharacterHPBehavior(Player _self, int maxHP, Callable? deathCallback=null) : base(_self)
+    public CharacterHPBehavior(Character _self, int maxHP, Callable? deathCallback=null) : base(_self)
     {
         this.MaxHP = maxHP;
         DeathCallback = deathCallback;

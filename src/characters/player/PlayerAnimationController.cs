@@ -8,12 +8,14 @@ public partial class PlayerAnimationController : Node2D
     [Export] private NodePath specialSprite;
     [Export] private NodePath bodyAnimationPlayer;
     [Export] private NodePath headAnimationPlayer;
+    [Export] private NodePath hitAnimationPlayer;
 
     private Sprite2D body;
     private Sprite2D head;
     private Sprite2D special;
     private AnimationPlayer bodyAnim;
     private AnimationTree headAnim;
+    public AnimationPlayer HitAnim { get; private set; }
     private AnimationNodeStateMachinePlayback headState;
     public override void _Ready()
     {
@@ -26,7 +28,9 @@ public partial class PlayerAnimationController : Node2D
 
         bodyAnim = GetNode<AnimationPlayer>(bodyAnimationPlayer);
         headAnim = GetNode<AnimationTree>(headAnimationPlayer);
+        HitAnim = GetNode<AnimationPlayer>(hitAnimationPlayer);
         headState = (AnimationNodeStateMachinePlayback)headAnim.Get("parameters/playback");
+
     }
 
     public void SetBody(Vector2 moveDir)

@@ -5,7 +5,7 @@ public class PlayerEmitBehavior : CharacterBehavior
 {
     
     private double emitCDRefValue;
-    private double emitCD = 0;
+    private double emitCDTimer = 0;
 
     public PlayerEmitBehavior(Player _self, double _emitCDRefValue) : base(_self)
     {
@@ -26,7 +26,7 @@ public class PlayerEmitBehavior : CharacterBehavior
     {
         base._Process(delta);
         
-        if (emitCD >= 0) emitCD -= delta;
+        if (emitCDTimer >= 0) emitCDTimer -= delta;
         
         //when both directions are pressed, use the last pressed direction,
         //vertical inputs over horizontal ones.
@@ -66,13 +66,13 @@ public class PlayerEmitBehavior : CharacterBehavior
         }
         statusV["forced_facing"] = dir;
 
-        if(emitCD > 0){
+        if(emitCDTimer > 0){
             statusF["emitted_this_frame"] = 0;
             return;
         }
 
         statusF["emitted_this_frame"] = 1;
-        emitCD = emitCDRefValue / statusF["fire_rate"];
+        emitCDTimer = emitCDRefValue / statusF["fire_rate"];
         ((Player)self).projectileFactory.Emit(self, dir);
     }
 }

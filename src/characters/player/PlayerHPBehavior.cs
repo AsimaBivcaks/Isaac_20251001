@@ -3,6 +3,8 @@ using System;
 
 public class PlayerHPBehavior : CharacterHPBehavior
 {
+    private AnimationPlayer anim;
+
     [Export] private double invincibilityTime = 1.0f;
     private double invincibilityTimer = 0.0f;
 
@@ -19,6 +21,20 @@ public class PlayerHPBehavior : CharacterHPBehavior
         // Apply knockback
         self.Velocity += damageData.knockbackVector;
         invincibilityTimer = invincibilityTime;
+        if(damageData.damageAmount > 0)
+            anim.Play("hit");
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+        
+        anim = ((Player)self).anim.HitAnim;
+        anim.AnimationFinished += (StringName name) => {
+            if (invincibilityTimer <= 0)
+                anim.Stop();
+            else anim.Play("hit");
+        };
     }
 
     public override void _Process(double delta)

@@ -6,6 +6,8 @@ public class PlayerMoveBehavior : CharacterBehavior
     private float moveAcceleration;
     private float velocityRefValue;
 
+    PlayerAnimationController anim;
+
     public PlayerMoveBehavior(Player _self, float _moveAcceleration, float _velocityRefValue) : base(_self)
     {
         moveAcceleration = _moveAcceleration;
@@ -19,6 +21,8 @@ public class PlayerMoveBehavior : CharacterBehavior
         statusV["facing"] = new Vector2(0,1);
         statusV["move"] = new Vector2();
         statusV["forced_facing"] = new Vector2(0,0);
+
+        anim = ((Player)self).anim;
     }
 
     public override void _Process(double delta)
@@ -27,11 +31,11 @@ public class PlayerMoveBehavior : CharacterBehavior
 
         float vlen = self.Velocity.Length();
         if (vlen < 0.1f) vlen = 0.1f; //avoid NaN
-        self.anim.SetBody(self.Velocity/vlen);
+        anim.SetBody(self.Velocity/vlen);
         if(statusV["forced_facing"] != Vector2.Zero)
-            self.anim.SetHead(statusV["forced_facing"].Normalized(), 255f, statusF["emitted_this_frame"] > 0.5f);
+            anim.SetHead(statusV["forced_facing"].Normalized(), 255f, statusF["emitted_this_frame"] > 0.5f);
         else
-            self.anim.SetHead(self.Velocity/vlen, vlen, statusF["emitted_this_frame"] > 0.5f);
+            anim.SetHead(self.Velocity/vlen, vlen, statusF["emitted_this_frame"] > 0.5f);
 
         Vector2 facing = statusV["facing"];
         Vector2 moveDir = statusV["move"];

@@ -5,14 +5,14 @@ using System;
 
 public abstract class ProjectileFactory
 {
-    public abstract void Emit(Player owner, Vector2 direction);
+    public abstract void Emit(Character owner, Vector2 direction);
 
-    protected Projectile EmitInternal(Player owner, Vector2 psu_dir, PackedScene projectileScene)
+    protected Projectile CreateProjectile(Character owner, Vector2 psu_dir, PackedScene projectileScene)
     {
         Projectile p = projectileScene.Instantiate<Projectile>();
         p.Position = owner.Position;
         p.Velocity = psu_dir * p.SpeedRefValue;
-        owner.GetTree().Root.AddChild(p);
+        //owner.Mount.AddChild(p);
         return p;
     }
 

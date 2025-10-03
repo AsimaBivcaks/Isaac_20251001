@@ -14,10 +14,10 @@ public partial class Tear : Projectile
         anim.Play("fly");
     }
 
-    protected override void HitTarget(Player target)
+    protected override void HitTarget(Character target)
     {
         if(statusF["disabled"] == 1) return;
-        target.GetBehavior<PlayerHPBehavior>(BehaviorType.HP).TakeDamage(
+        target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(
             new DamageData(attacker, (int)statusF["damage"], DamageType.NORMAL, Vector2.Zero)
         );
         statusF["disabled"] = 1;
