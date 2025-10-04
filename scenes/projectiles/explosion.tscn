@@ -63,7 +63,7 @@ libraries = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -38)
+position = Vector2(0, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1)

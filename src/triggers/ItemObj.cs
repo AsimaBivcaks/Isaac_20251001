@@ -51,7 +51,7 @@ public partial class ItemObj : TriggerObj
         JellyEffect?._Process((float)delta);
     }
 
-    protected void GetJellyEffect()
+    public void GetJellyEffect()
     {
         JellyEffect = new ItemObjJellyEffect(sprite);
     }
@@ -85,18 +85,5 @@ public partial class ItemObj : TriggerObj
     public void Destroy()
     {
         QueueFree();
-    }
-
-    private static PackedScene scene = GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["item_obj"]);
-    public static ItemObj Create(Node mount, Vector2 position, Item item, bool withJelly = true)
-    {
-        ItemObj obj = (ItemObj)scene.Instantiate();
-        obj.item = item;
-        obj.InitAndEnterTree(mount, position);
-        if (withJelly)
-        {
-            obj.GetJellyEffect();
-        }
-        return obj;
     }
 }

@@ -9,4 +9,7 @@ public enum BehaviorType{
     HP,
     EnemyAI,
     PlayerInteract,
+    PlayerKeyManagement,
+    PlayerMoneyManagement,
+    
 }

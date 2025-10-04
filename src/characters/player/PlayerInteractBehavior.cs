@@ -26,10 +26,13 @@ public class PlayerInteractBehavior : CharacterBehavior
                     obj.Push((obj.GlobalPosition - self.GlobalPosition).Normalized(), 40.0f);
                 }
             }
+            if(body is InteractableObj obj2){
+                obj2.OnPlayerInteract((Player)self);
+            }
         };
     }
 
-    public override void _Process(double delta)
+    /*public override void _Process(double delta)
     {
         if(Input.IsActionJustPressed("interact"))
         {
@@ -41,5 +44,5 @@ public class PlayerInteractBehavior : CharacterBehavior
                 }
             }
         }
-    }
+    }*/
 }

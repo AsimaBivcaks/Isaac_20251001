@@ -40,8 +40,6 @@ public partial class Player : Character
         statusF["range"] = 1.0f;
         statusF["luck"] = 1.0f;
 
-        statusF["bombs"] = 3;
-
         //TEMP
         WorldUtilsRandom.Init(12345);
         WorldUtilsRng.Init(12345 * 31);
@@ -64,6 +62,8 @@ public partial class Player : Character
         ), BehaviorType.HP);
         AddBehavior(new PlayerBombBehavior(this), BehaviorType.PlayerBomb);
         AddBehavior(new PlayerInteractBehavior(this, interactArea), BehaviorType.PlayerInteract);
+        AddBehavior(new PlayerKeyManagementBehavior(this), BehaviorType.PlayerKeyManagement);
+        AddBehavior(new PlayerMoneyManagementBehavior(this), BehaviorType.PlayerMoneyManagement);
         
         projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_tear"]));
 
@@ -74,6 +74,6 @@ public partial class Player : Character
 
     public void TEMPtest()
     {
-        //ItemObj.Create(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["item_bomb"]));
+        WorldUtilsTriggers.SpawnItem(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["item_key"]));
     }
 }

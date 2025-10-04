@@ -1,10 +1,10 @@
 //Item(being triggered when player touches it)
-//->Coin
-//->Bomb
-//->Heart
-//->KeyItem
-//->GrabBag
-//->Battery
+//->CoinItem(s)
+//->BombItem(s)
+//->HeartItem(s)
+//->KeyItem(s)
+//->GrabBagItem
+//->BatteryItem
 //->EffectItem (passive items)
 //->UsableItem (active items)
 //->BuffItem (trinkets, affect status while held)

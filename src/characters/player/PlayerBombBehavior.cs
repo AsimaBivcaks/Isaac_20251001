@@ -9,14 +9,14 @@ public class PlayerBombBehavior : CharacterBehavior
     private float bombCDTimer; //current cooldown
     [Export] public float BombCD = .6f;
 
-    public int Bombs{
+    private int bombs = 3; //current bombs
+
+    public int Bombs{ //This was based on statusF["bombs"], however now it's pretty much something useless
         get{
-            if(!self.statusF.ContainsKey("bombs"))
-                self.statusF["bombs"] = 0;
-            return (int)(self.statusF["bombs"] + .01f); //idk if this is really necessary
+            return bombs;
         }
-        set{
-            self.statusF["bombs"] = Math.Clamp(value, 0, MAX_BOMBS);
+        private set{
+            bombs = Math.Clamp(value, 0, MAX_BOMBS);
         }
     }
 

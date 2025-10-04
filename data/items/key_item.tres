@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="KeyItem" load_steps=3 format=3 uid="uid://bdry7pbhex283"]
+
+[ext_resource type="Texture2D" uid="uid://d1geh817uwdw3" path="res://graphics/items/key.tres" id="1_5iblx"]
+[ext_resource type="Script" uid="uid://snu6p3dhsxh2" path="res://src/items/KeyItem.cs" id="2_0tmh5"]
+
+[resource]
+script = ExtResource("2_0tmh5")
+itemName = "Key"
+description = "+1Key"
+icon = ExtResource("1_5iblx")
+metadata/_custom_type_script = "uid://snu6p3dhsxh2"
