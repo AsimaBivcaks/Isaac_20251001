@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d1e757pvlfmcx"]
+
+[ext_resource type="Texture2D" uid="uid://jkyj4mb8ivt5" path="res://graphics/characters/monstro/boss_004_monstro.png" id="1_6eqkf"]
+
+[resource]
+atlas = ExtResource("1_6eqkf")
+region = Rect2(0, 0, 400, 224)

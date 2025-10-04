@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://broiyb2fqt5ex" path="res://src/rendering/Shadow.cs" id="4_6kahq"]
 
 [sub_resource type="Curve" id="Curve_ufsfx"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7328124, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7328124, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 6.3315363, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oc4rm"]
@@ -187,4 +187,7 @@ libraries = {
 }
 
 [node name="Node2D" type="Sprite2D" parent="."]
+offset = Vector2(0, 8)
 script = ExtResource("4_6kahq")
+fullWidth = 14.0
+offset = Vector2(0, 8)

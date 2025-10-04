@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bifrk5p4qyh73"]
+
+[ext_resource type="PackedScene" uid="uid://cw3jy4a3t2en7" path="res://scenes/projectiles/tear.tscn" id="1_8pm0o"]
+[ext_resource type="Texture2D" uid="uid://tk0s7y4761ay" path="res://graphics/projectiles/bloodtear.tres" id="2_baddi"]
+[ext_resource type="Texture2D" uid="uid://b0ukdxevo0jjo" path="res://graphics/projectiles/bloodtear_pop.tres" id="3_6pv16"]
+
+[node name="Projectile" instance=ExtResource("1_8pm0o")]
+RangeRefValue = 220.0
+DamageRefValue = 1
+targetLayer = 2
+
+[node name="s1" parent="." index="0"]
+texture = ExtResource("2_baddi")
+
+[node name="s2" parent="." index="1"]
+texture = ExtResource("3_6pv16")
+
+[node name="coll" parent="." index="2"]
+collision_mask = 3

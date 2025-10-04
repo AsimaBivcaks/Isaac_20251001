@@ -1,0 +1,261 @@
+[gd_scene load_steps=14 format=3 uid="uid://cmqqri7j2gqol"]
+
+[ext_resource type="Script" uid="uid://cqoqtpd46ltcf" path="res://src/characters/monstro/Monstro.cs" id="1_7neoc"]
+[ext_resource type="Texture2D" uid="uid://d1e757pvlfmcx" path="res://graphics/characters/monstro/monstro.tres" id="1_l0216"]
+[ext_resource type="Script" uid="uid://bdm4gj0ba8n75" path="res://src/characters/monstro/MonstroAnimationController.cs" id="3_dgkgk"]
+[ext_resource type="Script" uid="uid://0hv5qon78434" path="res://src/rendering/ShadowVirtualZ.cs" id="4_dgkgk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_won20"]
+size = Vector2(64, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7neoc"]
+size = Vector2(50, 28)
+
+[sub_resource type="Animation" id="Animation_won20"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("offsettransform/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("offsettransform:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:ZPosition")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7neoc"]
+resource_name = "fire"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("offsettransform/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_dgkgk"]
+resource_name = "fly1"
+length = 0.3
+step = 0.022222223
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("offsettransform/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.022222223, 0.044444446, 0.06666667, 0.11111111),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("offsettransform:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -41), Vector2(0, -60), Vector2(0, -700)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:ZPosition")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2888889),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -50.0]
+}
+
+[sub_resource type="Animation" id="Animation_phupa"]
+resource_name = "fly2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("offsettransform/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.2, 0.23333333, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 6, 5, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("offsettransform:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -700), Vector2(0, -200), Vector2(0, -41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:ZPosition")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-50.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y815w"]
+resource_name = "jump"
+length = 1.0000023
+step = 0.022222223
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("offsettransform/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.022222223, 0.044444446, 0.06666667, 0.11111111, 0.88888884, 0.9333333, 0.95555556, 0.9777778),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 7, 7, 6, 5, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("offsettransform:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.31111112, 0.6888889, 0.95555556),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -41), Vector2(0, -100), Vector2(0, -100), Vector2(0, -41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:ZPosition")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.31111112, 0.6888889, 0.95555556),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -30.0, -30.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l0216"]
+resource_name = "wait"
+length = 0.60002
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("offsettransform/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7neoc"]
+_data = {
+&"RESET": SubResource("Animation_won20"),
+&"fire": SubResource("Animation_7neoc"),
+&"fly1": SubResource("Animation_dgkgk"),
+&"fly2": SubResource("Animation_phupa"),
+&"jump": SubResource("Animation_y815w"),
+&"wait": SubResource("Animation_l0216")
+}
+
+[node name="Monstro" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_7neoc")
+velocityRefValue = 50.0
+animationController = NodePath("anim")
+meleeArea = NodePath("meleeArea")
+
+[node name="offsettransform" type="Node2D" parent="."]
+position = Vector2(0, -41)
+
+[node name="Sprite2D" type="Sprite2D" parent="offsettransform"]
+texture = ExtResource("1_l0216")
+hframes = 5
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_won20")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="meleeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="meleeArea"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_7neoc")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7neoc")
+}
+script = ExtResource("3_dgkgk")
+K = 800.0
+Mu = 20.0
+spritePath = NodePath("../offsettransform/Sprite2D")
+
+[node name="shd" type="Sprite2D" parent="."]
+offset = Vector2(0, 1)
+script = ExtResource("4_dgkgk")
+fullWidth = 70.0
+offset = Vector2(0, 1)

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+//1HP here corresponds to 1 half heart in the original game
 public abstract class CharacterHPBehavior : CharacterBehavior
 {
     protected const float REDBLINK_DURATION = 0.15f;
@@ -17,6 +18,8 @@ public abstract class CharacterHPBehavior : CharacterBehavior
         MaxHP = _maxHP;
         HP = MaxHP;
         DeathCallback = deathCallback;
+
+        statusF["invincible"] = 0f;
     }
 
     public override void _Ready()
@@ -29,7 +32,7 @@ public abstract class CharacterHPBehavior : CharacterBehavior
 
     public void TakeDamage(DamageData damageData)
     {
-        if (self.statusF["pause"] > 0.5f) return;
+        if (self.statusF["pause"] > .5f || self.statusF["invincible"] > .5f) return;
         if (ProcessDamage(damageData))
         {
             if(redBlink != null)

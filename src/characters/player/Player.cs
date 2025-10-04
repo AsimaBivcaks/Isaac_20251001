@@ -61,7 +61,7 @@ public partial class Player : Character
         ), BehaviorType.HP);
         AddBehavior(new PlayerBombBehavior(this), BehaviorType.PlayerBomb);
         
-        projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>("res://scenes/projectiles/Tear.tscn"));
+        projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_tear"]));
 
         EndReady();
     }

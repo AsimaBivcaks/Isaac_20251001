@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+//specially for world generation and other non-deterministic (but consistent) things
 public static class WorldUtilsRng
 {
     private static Random rng;
@@ -48,5 +49,12 @@ public static class WorldUtilsRandom
     public static bool Chance(float probability)
     {
         return rng.NextDouble() < probability;
+    }
+
+    public static Vector2 RandomInDisc(float r)
+    {
+        double angle = rng.NextDouble() * Math.PI * 2;
+        double R = Math.Sqrt(rng.NextDouble()) * r;
+        return new Vector2((float)(Mathf.Cos(angle) * R), (float)(Mathf.Sin(angle) * R));
     }
 }

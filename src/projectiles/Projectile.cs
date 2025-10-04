@@ -41,13 +41,14 @@ public abstract partial class Projectile : Node2D, IShadow
         hitbox.CollisionLayer = wallLayer;
         hitbox.CollisionMask = wallLayer | targetLayer;
         hitbox.BodyEntered += (Node2D body) => {
-            if(body is CharacterBody2D target){
+            if(body is PhysicsBody2D target){
                 if((target.CollisionLayer & targetLayer) != 0 && target is Character){
                     HitTarget((Character)target);
                     if(destroyWhenHit)
                         Destroy();
                 }
                 else if ((target.CollisionLayer & wallLayer) != 0){
+                    //GD.Print("hit wall");
                     Destroy();
                 }
             }
@@ -74,7 +75,7 @@ public abstract partial class Projectile : Node2D, IShadow
         base._EnterTree();
 
         statusF["distance_traveled"] = 0.0f;
-        statusF["disabled"] = 0;
+        //statusF["disabled"] = 0;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -98,5 +99,26 @@ public abstract partial class Projectile : Node2D, IShadow
         Velocity = Vector2.Zero;
         hitbox.Monitoring = false;
         hitbox.Monitorable = false;
+    }
+
+    public void Enable()
+    {
+        statusF["disabled"] = 0;
+        hitbox.Monitoring = true;
+        hitbox.Monitorable = true;
+        foreach( Node2D body in hitbox.GetOverlappingBodies() )
+        {
+            if(body is CharacterBody2D target){
+                if((target.CollisionLayer & targetLayer) != 0 && target is Character){
+                    HitTarget((Character)target);
+                    if(destroyWhenHit)
+                        Destroy();
+                }
+                else if ((target.CollisionLayer & wallLayer) != 0){
+                    //GD.Print("hit wall");
+                    Destroy();
+                }
+            }
+        }
     }
 }

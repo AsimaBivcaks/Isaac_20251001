@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0qqjoy3lb7n6"]
+
+[ext_resource type="PackedScene" uid="uid://bifrk5p4qyh73" path="res://scenes/projectiles/e_bloodtear.tscn" id="1_m0eed"]
+[ext_resource type="Script" uid="uid://d1kv3ttxw01d8" path="res://src/projectiles/AiredTear.cs" id="2_1ciat"]
+
+[sub_resource type="Curve" id="Curve_pcg8p"]
+_data = [Vector2(0, 1), 0.0, -4.281548, 0, 0, Vector2(0.5859375, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 7.2984185, 0.0, 0, 0]
+point_count = 3
+
+[node name="Projectile" instance=ExtResource("1_m0eed")]
+script = ExtResource("2_1ciat")
+zposVirtual = 80.0
+dropCurve = SubResource("Curve_pcg8p")
+SpeedRefValue = 200.0
+RangeRefValue = 100.0
+DamageRefValue = 1

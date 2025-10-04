@@ -1,10 +1,9 @@
 using Godot;
 using System;
 
-//Used by objects that physically move along Y axis as their Z position
-//They should implement XYPosition
+//Used by objects that don't really move along Y axis, but solely move their sprites
 //ZPosition points upwards(<0)
-public partial class Shadow : Sprite2D
+public partial class ShadowVirtualZ : Sprite2D
 {
     private const float SHADOW_VISIBLE_MAX_HEIGHT = 100.0f;
 
@@ -48,8 +47,7 @@ public partial class Shadow : Sprite2D
         {
             destWidth = fullWidth;
         }
-        Modulate = new Color(0, 0, 0, MathF.Max(0.1f, 0.23f * (destWidth / fullWidth)) );
-        Position = offset - new Vector2(0, parentObject.ZPosition);
+        Modulate = new Color(0, 0, 0, MathF.Max(0.2f, 0.35f * (destWidth / fullWidth)) );
         Scale = new Vector2(destWidth / originalWidth, destWidth / originalWidth);
     }
 }
