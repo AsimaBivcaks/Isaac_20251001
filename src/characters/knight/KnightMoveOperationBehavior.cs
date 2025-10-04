@@ -19,7 +19,7 @@ public class KnightMoveOperationBehavior : CharacterBehavior
         base._Process(delta);
         
         Vector2 dir = statusV["input"];
-        if(dir.Length() > .1f)
+        if(dir.LengthSquared() > .1f)
         {
             if(statusF["dash"] < 0.5f)
             {

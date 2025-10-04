@@ -1,6 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://bv8yyy7lo8rko"]
+[gd_scene load_steps=39 format=3 uid="uid://bv8yyy7lo8rko"]
 
 [ext_resource type="Script" uid="uid://d2g01qaiot4q7" path="res://src/characters/knight/Knight.cs" id="1_wufdn"]
+[ext_resource type="Script" uid="uid://7guehgrtubhk" path="res://src/characters/_common/FourDirDetector.cs" id="2_2r4hc"]
 [ext_resource type="Texture2D" uid="uid://cktg55foi1s3n" path="res://graphics/characters/knight/knight_body.tres" id="2_np6au"]
 [ext_resource type="Texture2D" uid="uid://d23p7fq44o32n" path="res://graphics/characters/knight/knight_head.tres" id="3_2r4hc"]
 
@@ -295,6 +296,10 @@ SprHeadPath = NodePath("sprhead")
 SprBodyPath = NodePath("sprbody")
 PlayerDetectorPath = NodePath("detect")
 
+[node name="detect" type="Node2D" parent="."]
+script = ExtResource("2_2r4hc")
+collisionLayer = 3
+
 [node name="sprbody" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 7)
 sprite_frames = SubResource("SpriteFrames_ok6jj")
@@ -306,10 +311,6 @@ position = Vector2(0, -5)
 texture = ExtResource("3_2r4hc")
 hframes = 2
 vframes = 2
-
-[node name="detect" type="RayCast2D" parent="."]
-target_position = Vector2(1, 244)
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

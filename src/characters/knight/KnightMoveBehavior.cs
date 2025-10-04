@@ -91,11 +91,11 @@ public class KnightMoveBehavior : CharacterBehavior
 
             if(statusF["dash"] < 0.5f) //when wondering, dash or keep randomly walking
             {
-                Object coll = ((Knight)self).playerDetector.GetCollider();
-                if (dashCooldownTimer < .01f && coll != null && coll is Player)
+                Vector2 coll = ((Knight)self).playerDetector.Detect<Player>();
+                if (dashCooldownTimer < .01f && coll.LengthSquared() > .01f)
                 {
                     dashTimer = dashDuration;
-                    self.Velocity = statusV["input"] * velocityRefValue2;
+                    self.Velocity = coll.Normalized() * velocityRefValue2;
                 } else if(WorldUtilsRandom.Chance(.6f)){
                     do {
                         statusV["input"] = directions[WorldUtilsRandom.RandomiRange(0,4)];

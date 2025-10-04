@@ -19,7 +19,7 @@ public class RedFlyMoveBehavior : CharacterBehavior
         if (statusF["pause"] > .5f) return;
 
         Vector2 direction = player.GlobalPosition - self.GlobalPosition;
-        if(direction.Length() > 2f)
+        if(direction.LengthSquared() > 4f)
             direction = direction.Normalized();
         else
             direction = new Vector2(0,0);

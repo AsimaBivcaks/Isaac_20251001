@@ -38,7 +38,7 @@ public partial class PlayerAnimationController : Node2D
 
     public void SetBody(Vector2 moveDir)
     {
-        if (moveDir.Length() < .2f)
+        if (moveDir.LengthSquared() < .1f)
         {
             bodyAnim.Play("idle");
             return;
