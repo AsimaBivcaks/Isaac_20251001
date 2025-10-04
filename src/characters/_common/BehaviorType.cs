@@ -11,5 +11,7 @@ public enum BehaviorType{
     PlayerInteract,
     PlayerKeyManagement,
     PlayerMoneyManagement,
+    PlayerUsableManagement,
+    PlayerEffectManagement,
     
 }

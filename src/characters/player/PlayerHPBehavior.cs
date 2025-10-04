@@ -22,11 +22,16 @@ public class PlayerHPBehavior : CharacterHPBehavior
         HP = Math.Min(HP + amount, MaxHP);
     }
 
-    protected override bool ProcessDamage(DamageData damageData)
+    private void Damage(int amount) //dealing with hearts
+    {
+        HP -= amount;
+    }
+
+    protected override bool ProcessDamage(DamageData damageData) //dealing with elemental damage
     {
         if (invincibilityTimer > 0)
             return false;
-        HP -= damageData.damageAmount;
+        Damage(damageData.damageAmount);
         // Apply knockback
         statusV["inertia"] += damageData.knockbackVector;
         invincibilityTimer = invincibilityTime;

@@ -64,6 +64,8 @@ public partial class Player : Character
         AddBehavior(new PlayerInteractBehavior(this, interactArea), BehaviorType.PlayerInteract);
         AddBehavior(new PlayerKeyManagementBehavior(this), BehaviorType.PlayerKeyManagement);
         AddBehavior(new PlayerMoneyManagementBehavior(this), BehaviorType.PlayerMoneyManagement);
+        AddBehavior(new PlayerUsableManagementBehavior(this), BehaviorType.PlayerUsableManagement);
+        AddBehavior(new PlayerEffectManagementBehavior(this), BehaviorType.PlayerEffectManagement);
         
         projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_tear"]));
 
@@ -74,6 +76,6 @@ public partial class Player : Character
 
     public void TEMPtest()
     {
-        WorldUtilsTriggers.SpawnItem(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["item_key"]));
+        //WorldUtilsTriggers.SpawnItem(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["item_key"]));
     }
 }

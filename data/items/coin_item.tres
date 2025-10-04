@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CoinItem" load_steps=3 format=3 uid="uid://jxnnn4reldj"]
+
+[ext_resource type="Texture2D" uid="uid://conhkj2mu0l05" path="res://graphics/items/coin.tres" id="1_xwia5"]
+[ext_resource type="Script" uid="uid://dhy2copbsy5r7" path="res://src/items/CoinItem.cs" id="2_xgd0i"]
+
+[resource]
+script = ExtResource("2_xgd0i")
+itemName = "Coin"
+description = "+1Money"
+icon = ExtResource("1_xwia5")
+metadata/_custom_type_script = "uid://dhy2copbsy5r7"
