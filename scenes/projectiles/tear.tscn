@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw3jy4a3t2en7"]
+[gd_scene load_steps=11 format=3 uid="uid://cw3jy4a3t2en7"]
 
 [ext_resource type="Script" uid="uid://prdoh7cpe3w3" path="res://src/projectiles/Tear.cs" id="1_ufsfx"]
 [ext_resource type="Texture2D" uid="uid://bkdddrfbfc3u6" path="res://graphics/projectiles/tear.tres" id="1_usj66"]
 [ext_resource type="Texture2D" uid="uid://l0444fgwxwro" path="res://graphics/projectiles/tear_pop.tres" id="2_ufsfx"]
+[ext_resource type="Script" uid="uid://broiyb2fqt5ex" path="res://src/rendering/Shadow.cs" id="4_6kahq"]
 
 [sub_resource type="Curve" id="Curve_ufsfx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7328124, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -184,3 +185,6 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 libraries = {
 &"": SubResource("AnimationLibrary_l55fw")
 }
+
+[node name="Node2D" type="Sprite2D" parent="."]
+script = ExtResource("4_6kahq")

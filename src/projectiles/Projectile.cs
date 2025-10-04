@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public abstract partial class Projectile : Node2D
+public abstract partial class Projectile : Node2D, IShadow
 {
     public Dictionary<string, float> statusF = new Dictionary<string, float>();
     //public Dictionary<string, Vector2> statusV = new Dictionary<string, Vector2>();
@@ -13,6 +13,9 @@ public abstract partial class Projectile : Node2D
     [Export] public int DamageRefValue = 1;
     [Export] public float KnockbackRefValue = 0.0f;
     [Export] public NodePath animationController;
+
+    public Vector2 XYPosition { get; protected set; }
+    public float ZPosition { get; protected set; } = 0.0f;
 
     [ExportGroup("Collision")]
     [Export(PropertyHint.Layers2DPhysics)] public uint wallLayer = 1;
@@ -25,7 +28,6 @@ public abstract partial class Projectile : Node2D
     public CharacterBody2D attacker;
 
     public Vector2 Velocity = Vector2.Zero;
-    protected Vector2 xyPosition;
 
     protected abstract void HitTarget(Character target);
     protected abstract void Destroy();
@@ -64,7 +66,7 @@ public abstract partial class Projectile : Node2D
             statusF["speed"] = 1.0f;
         statusF["speed"] *= SpeedRefValue;
 
-        xyPosition = Position;
+        XYPosition = Position;
     }
 
     public override void _EnterTree()
@@ -84,7 +86,7 @@ public abstract partial class Projectile : Node2D
         
         Vector2 moveVec = Velocity * (float)delta;
         statusF["distance_traveled"] += moveVec.Length();
-        xyPosition += moveVec;
+        XYPosition += moveVec;
 
         if(statusF["distance_traveled"] >= statusF["range"])
             Destroy();

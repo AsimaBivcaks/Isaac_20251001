@@ -7,5 +7,8 @@
 velocityRefValue1 = 110.0
 velocityRefValue2 = 250.0
 
-[node name="sprhead" parent="." index="1"]
+[node name="sprhead" parent="." index="2"]
 texture = ExtResource("2_mlxtn")
+
+[node name="CollisionShape2D" parent="meleeArea" index="0"]
+position = Vector2(0, 5)

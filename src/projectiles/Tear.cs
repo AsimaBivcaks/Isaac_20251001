@@ -47,8 +47,7 @@ public partial class Tear : Projectile
 
         if(statusF["disabled"] > .5f) return;
 
-        Vector2 displacement = new Vector2(0, zposVirtual) *
-            dropCurve.Sample(statusF["distance_traveled"] / statusF["range"]);
-        Position = xyPosition + displacement;
+        ZPosition = -zposVirtual * (1 - dropCurve.Sample(statusF["distance_traveled"] / statusF["range"]));
+        Position = XYPosition + new Vector2(0, ZPosition);
     }
 }

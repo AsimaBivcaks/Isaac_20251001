@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://xv2vn41vdrn0"]
+[gd_scene load_steps=4 format=3 uid="uid://xv2vn41vdrn0"]
 
 [ext_resource type="PackedScene" uid="uid://cbsi7lbts3p58" path="res://scenes/characters/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://dc1ucxoretmma" path="res://scenes/characters/selfless_knight.tscn" id="2_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(379, 20)
@@ -46,6 +45,3 @@ position = Vector2(25, -1.375)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Player" parent="World" instance=ExtResource("1_ig7tw")]
-
-[node name="Knight" parent="World" instance=ExtResource("2_0xm2m")]
-position = Vector2(-102, -40)
