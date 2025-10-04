@@ -24,7 +24,7 @@ public partial class Shadow : Sprite2D
         Modulate = new Color(0, 0, 0, 0.2f);
         Position = offset;
 
-        Texture = GD.Load<Texture2D>("res://graphics/shadow.png");
+        Texture = GD.Load<Texture2D>(WorldUtilsPools.resourcePaths["img_shadow"]);
         originalWidth = Texture.GetSize().X;
 
         ZIndex = -100;

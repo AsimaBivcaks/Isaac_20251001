@@ -13,6 +13,15 @@ public class PlayerHPBehavior : CharacterHPBehavior
     {
     }
 
+    public bool CanHeal()
+    {
+        return HP < MaxHP;
+    }
+    public void Heal(int amount)
+    {
+        HP = Math.Min(HP + amount, MaxHP);
+    }
+
     protected override bool ProcessDamage(DamageData damageData)
     {
         if (invincibilityTimer > 0)

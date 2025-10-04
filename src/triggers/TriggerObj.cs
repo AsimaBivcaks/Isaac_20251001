@@ -1,11 +1,13 @@
+//TriggerObj
+//->ItemObj
+//->InteractableObj
+//->BombObj
+
 using Godot;
 using System;
 
-public partial class TriggerObj : Area2D
+public abstract partial class TriggerObj : Area2D
 {
-    //#nullable enable
-    [Export] public Item item;
-
     protected Node mount;
 
     public void InitAndEnterTree(Node _mount, Vector2 _position)

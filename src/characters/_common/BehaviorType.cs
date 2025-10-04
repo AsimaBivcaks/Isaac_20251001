@@ -8,4 +8,5 @@ public enum BehaviorType{
     PlayerBomb,
     HP,
     EnemyAI,
+    PlayerInteract,
 }

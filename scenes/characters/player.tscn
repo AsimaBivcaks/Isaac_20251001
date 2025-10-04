@@ -312,16 +312,18 @@ _data = {
 radius = 13.0
 height = 32.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
-size = Vector2(20, 25)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyp2m"]
+radius = 14.0
+height = 35.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_dyp2m")
-velocityRefValue = 170.0
-emitCDRefValue = 0.3
-moveAcceleration = 800.0
-animationController = NodePath("AnimationController")
+VelocityRefValue = 170.0
+EmitCDRefValue = 0.3
+MoveAcceleration = 800.0
+AnimationController = NodePath("AnimationController")
+InteractAreaPath = NodePath("InteractBox")
 
 [node name="AnimationController" type="Node2D" parent="."]
 script = ExtResource("2_atpat")
@@ -377,8 +379,10 @@ shape = SubResource("CapsuleShape2D_h2yge")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="InteractBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractBox"]
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_dyp2m")
+shape = SubResource("CapsuleShape2D_dyp2m")
 debug_color = Color(0.6314516, 0.34699392, 1, 0)

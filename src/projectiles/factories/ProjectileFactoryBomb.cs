@@ -7,7 +7,7 @@ using System;
 public class ProjectileFactoryBomb : ProjectileFactory
 {
     public static ProjectileFactoryBomb Instance = new ProjectileFactoryBomb(
-        GD.Load<PackedScene>("res://scenes/projectiles/explosion.tscn")
+        GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_explosion"])
     );
     public PackedScene projectileScene;
 

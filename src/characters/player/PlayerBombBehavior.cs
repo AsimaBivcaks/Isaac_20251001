@@ -56,4 +56,14 @@ public class PlayerBombBehavior : CharacterBehavior
         //generate a BombObj at player's position
         WorldUtilsTriggers.SpawnBomb(self.Position + new Vector2(0, -.5f), self.Mount);
     }
+
+    public void AddBomb(int amount=1)
+    {
+        Bombs += amount;
+    }
+
+    public bool CanAddBomb()
+    {
+        return Bombs < MAX_BOMBS;
+    }
 }

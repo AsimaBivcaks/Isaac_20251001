@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BombItem" load_steps=3 format=3 uid="uid://nlmi5um57v8i"]
+
+[ext_resource type="Texture2D" uid="uid://0j8h8tcb66s5" path="res://graphics/items/bomb.tres" id="1_ftaof"]
+[ext_resource type="Script" uid="uid://mpj2o4jb0n3o" path="res://src/items/BombItem.cs" id="2_c2oe2"]
+
+[resource]
+script = ExtResource("2_c2oe2")
+itemName = "Bomb"
+description = "+1Bomb"
+icon = ExtResource("1_ftaof")
+metadata/_custom_type_script = "uid://mpj2o4jb0n3o"

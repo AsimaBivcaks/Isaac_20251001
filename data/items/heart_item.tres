@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HeartItem" load_steps=3 format=3 uid="uid://b36mny5imqka4"]
+
+[ext_resource type="Texture2D" uid="uid://de5qy4bjuejft" path="res://graphics/items/heart.tres" id="1_ex8eu"]
+[ext_resource type="Script" uid="uid://b57xkn2e7v3ny" path="res://src/items/HeartItem.cs" id="2_1qkvv"]
+
+[resource]
+script = ExtResource("2_1qkvv")
+itemName = "Heart"
+description = "+2HP"
+icon = ExtResource("1_ex8eu")
+metadata/_custom_type_script = "uid://b57xkn2e7v3ny"

@@ -14,12 +14,14 @@ using System.Linq;
 
 public partial class Player : Character
 {
-    [Export] public float velocityRefValue;
-    [Export] public float emitCDRefValue;
-    [Export] public float moveAcceleration;
-    [Export] public NodePath animationController;
+    [Export] public float VelocityRefValue;
+    [Export] public float EmitCDRefValue;
+    [Export] public float MoveAcceleration;
+    [Export] public NodePath AnimationController;
+    [Export] public NodePath InteractAreaPath;
 
     public PlayerAnimationController anim;
+    public Area2D interactArea;
 
     //private void GetItem(Item item)
 
@@ -27,8 +29,10 @@ public partial class Player : Character
     {
         base._Ready();
 
-        anim = GetNode<PlayerAnimationController>(animationController);
+        anim = GetNode<PlayerAnimationController>(AnimationController);
         anim.player = this;
+
+        interactArea = GetNode<Area2D>(InteractAreaPath);
         
         statusF["move_speed"] = 1.0f;
         statusF["fire_rate"] = 1.0f;
@@ -36,19 +40,18 @@ public partial class Player : Character
         statusF["range"] = 1.0f;
         statusF["luck"] = 1.0f;
 
-        //TEMP
-        statusF["bombs"] = 99;
+        statusF["bombs"] = 3;
 
         //TEMP
         WorldUtilsRandom.Init(12345);
         WorldUtilsRng.Init(12345 * 31);
 
         //maybe TEMP
-        WorldUtilsBlackboard.Set("player_instance", this);
         WorldUtilsBlackboard.Set("decision_frequency", .2f);
 
-        AddBehavior(new PlayerMoveBehavior(this, moveAcceleration, velocityRefValue), BehaviorType.Move);
-        AddBehavior(new PlayerEmitBehavior(this, emitCDRefValue), BehaviorType.Attack);
+        WorldUtilsBlackboard.Set("player_instance", this);
+        AddBehavior(new PlayerMoveBehavior(this, MoveAcceleration, VelocityRefValue), BehaviorType.Move);
+        AddBehavior(new PlayerEmitBehavior(this, EmitCDRefValue), BehaviorType.Attack);
         AddBehavior(new PlayerHPBehavior(
             this,
             6,
@@ -60,9 +63,17 @@ public partial class Player : Character
             })
         ), BehaviorType.HP);
         AddBehavior(new PlayerBombBehavior(this), BehaviorType.PlayerBomb);
+        AddBehavior(new PlayerInteractBehavior(this, interactArea), BehaviorType.PlayerInteract);
         
         projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_tear"]));
 
         EndReady();
+
+        CallDeferred(nameof(TEMPtest));
+    }
+
+    public void TEMPtest()
+    {
+        //ItemObj.Create(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["item_bomb"]));
     }
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1pws5nckkj70"]
 
 [ext_resource type="Script" uid="uid://ckcom45061gjv" path="res://src/projectiles/Explosion.cs" id="1_5l78t"]
-[ext_resource type="Texture2D" uid="uid://6y1egnmyhvyn" path="res://graphics/projectiles/explosion.tres" id="2_lbule"]
+[ext_resource type="Texture2D" uid="uid://6nbcxg3qstxb" path="res://graphics/projectiles/explosion_new.tres" id="2_5l78t"]
 
 [sub_resource type="Animation" id="Animation_pn0yx"]
 length = 0.001
@@ -20,7 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_tvjf5"]
 resource_name = "default"
-length = 0.5333367
+length = 0.40000334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,10 +28,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.099999994, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.03333333, 0.06666666, 0.099999994, 0.13333333, 0.16666666, 0.19999999, 0.23333333, 0.26666668, 0.3, 0.33333337, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11, 12, 13, 14, 15, 16, 0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a36qc"]
@@ -41,7 +41,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5kae"]
-radius = 115.00435
+radius = 48.010414
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_5l78t")
@@ -52,8 +52,10 @@ targetLayer = 10
 hitboxArea = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_lbule")
-hframes = 17
+position = Vector2(0, -33)
+texture = ExtResource("2_5l78t")
+hframes = 4
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -61,7 +63,8 @@ libraries = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, -6)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_v5kae")

@@ -13,19 +13,16 @@
 //  ->Capsule
 //->... (blood machine, shopper item, etc.)
 
-//TriggerObj
-//->ItemObj
-//->InteractableObj
-//->BombObj (item=null)
-
 using Godot;
 using System;
 
+[GlobalClass]
 public abstract partial class Item : Resource
 {
     [Export] public string itemName = "Item";
     [Export] public string description = "This is an item.";
     [Export] public Texture2D icon;
 
-    public abstract void OnTrigger(Player player);
+    public abstract void OnPlayerGet(Player player);
+    public abstract bool IsPickable(Player player);
 }
