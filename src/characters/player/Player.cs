@@ -71,8 +71,8 @@ public partial class Player : Character
 
     public void TEMPtest()
     {
-        WorldUtilsRandom.Init(12345);
-        WorldUtilsRng.Init(12345 * 31);
+        WorldUtilsRandom.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007));
+        WorldUtilsRng.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007 * 31));
         WorldUtilsRoomManager.RoomMount = Mount;
         WorldUtilsRoomManager.LoadRoomAt("room_test", 0, 0);
         WorldUtilsRoomManager.SetCurrentRoom(0, 0);

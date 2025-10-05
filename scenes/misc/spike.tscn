@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4eix7d0bsoy7"]
+
+[ext_resource type="Script" uid="uid://co0lcb4gwb26v" path="res://src/world/misc/Spike.cs" id="1_xlbng"]
+[ext_resource type="Texture2D" uid="uid://dmku6f34ueqrs" path="res://graphics/world/grid_spikes.png" id="2_8glug"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sm2g"]
+
+[node name="Spike" type="Area2D"]
+z_index = -10
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xlbng")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8glug")
+hframes = 4
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1sm2g")
+debug_color = Color(0, 0.5950001, 0.7, 0.18039216)

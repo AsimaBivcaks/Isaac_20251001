@@ -92,6 +92,20 @@ public partial class PlayerAnimationController : Node2D
         };
     }
     
+    public void OnSwitchingRooms(float duration, Vector2 newPos)
+    {
+        body.Visible = false;
+        head.Visible = false;
+        special.Visible = false;
+        player.statusF["pause"] = 1;
+        GetTree().CreateTimer(duration).Timeout += () => {
+            player.GlobalPosition = newPos;
+            player.statusF["pause"] = 0;
+            body.Visible = true;
+            head.Visible = true;
+        };
+    }
+    
     public void ShowDeath(int frame, float duration, Callable? callback=null)
     {
         special.Frame = frame;

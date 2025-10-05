@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://csb4sfj0yobm7"]
+[gd_scene load_steps=11 format=4 uid="uid://csb4sfj0yobm7"]
 
 [ext_resource type="Script" uid="uid://djj2n4yov5g8v" path="res://src/world/Room.cs" id="1_6wmdb"]
 [ext_resource type="TileSet" uid="uid://20u3tbamjv7j" path="res://data/tilesets/basement_main.tres" id="1_m2pqs"]
+[ext_resource type="Script" uid="uid://8lt0o8arnumf" path="res://src/world/generate/EnemySpawn.cs" id="2_5im32"]
 [ext_resource type="Texture2D" uid="uid://1xac36aotu2p" path="res://graphics/world/props_01_basement.png" id="2_t3qpy"]
+[ext_resource type="Resource" uid="uid://pdew5pvkvss2" path="res://data/pools/enemy_normal_equalchance.tres" id="3_5im32"]
 [ext_resource type="Script" uid="uid://crstjppxt6gs2" path="res://src/world/RoomSpace.cs" id="3_t3qpy"]
+[ext_resource type="PackedScene" uid="uid://c053n08tevtyp" path="res://scenes/misc/stone.tscn" id="7_sinwk"]
+[ext_resource type="PackedScene" uid="uid://b4eix7d0bsoy7" path="res://scenes/misc/spike.tscn" id="8_0be07"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6wmdb"]
 texture = ExtResource("2_t3qpy")
@@ -153,10 +157,17 @@ sources/1 = SubResource("TileSetAtlasSource_6wmdb")
 [node name="Room" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6wmdb")
+SpawnGroups = Array[NodePath]([NodePath("Spawns1")])
 
-[node name="EnemySpawns" type="Node2D" parent="."]
+[node name="Spawns1" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Spawns1"]
+position = Vector2(320, 160)
+script = ExtResource("2_5im32")
+Pool = ExtResource("3_5im32")
 
 [node name="Fixed" type="Node2D" parent="."]
+z_index = -100
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Fixed"]
 position = Vector2(18, -10)
@@ -171,3 +182,12 @@ tile_set = SubResource("TileSet_jxhwm")
 [node name="RoomSpace" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 script = ExtResource("3_t3qpy")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("7_sinwk")]
+position = Vector2(176, 136)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("7_sinwk")]
+position = Vector2(272, 112)
+
+[node name="Spike" parent="." instance=ExtResource("8_0be07")]
+position = Vector2(104, 88)

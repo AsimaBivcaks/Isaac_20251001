@@ -3,6 +3,7 @@ using System;
 
 public partial class Explosion : Projectile
 {
+
     private bool next_frame = false;
 
     public override void _Ready()
@@ -33,14 +34,19 @@ public partial class Explosion : Projectile
         //damage nearby enemies
         var bodies = hitbox.GetOverlappingBodies();
         foreach(var body in bodies){
-            if((body is Character target) && ((target.CollisionLayer & targetLayer) != 0)){
+            if(body is IBlastable blastable){
+                blastable.OnBlast(GlobalPosition, DamageRefValue);
+            }
+            else if((body is Character target) && ((target.CollisionLayer & targetLayer) != 0)){
                 DamageData damage = new DamageData(
                     null,
                     DamageRefValue,
                     DamageType.EXPLOSION,
                     (target.Position - Position).Normalized() * KnockbackRefValue
                 );
-                target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(damage);
+                var hp = target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP);
+                if(hp != null)
+                    hp.TakeDamage(damage);
             }
         }
     }

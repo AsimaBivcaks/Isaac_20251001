@@ -26,6 +26,13 @@ public static class WorldUtilsPools
         {"eff_distant_admiration", "res://data/items/distant_admiration_eff.tres"},
 
         {"pref_distant_admiration", "res://scenes/characters/distant_admiration.tscn"},
+        {"pref_knight", "res://scenes/characters/knight.tscn"},
+        {"pref_monstro", "res://scenes/characters/monstro.tscn"},
+        {"pref_nerveending", "res://scenes/characters/nerveending.tscn"},
+        {"pref_red_fly", "res://scenes/characters/red_fly.tscn"},
+        {"pref_selfless_knight", "res://scenes/characters/selfless_knight.tscn"},
+
+        {"player", "res://scenes/characters/player.tscn"},
         
         {"room_test", "res://scenes/rooms/basement_0.tscn"},
     };

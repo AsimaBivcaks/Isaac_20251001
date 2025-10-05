@@ -105,7 +105,7 @@ reset={
 2d_physics/layer_2="Player&Projectile"
 2d_physics/layer_3="Interactable"
 2d_physics/layer_4="Enemy&Projectile"
-2d_physics/layer_5="Explosion"
+2d_physics/layer_5="Blastable"
 2d_physics/layer_6="Hole"
 2d_physics/layer_7="RoomSpace"
 

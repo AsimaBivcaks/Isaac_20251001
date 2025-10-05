@@ -76,10 +76,12 @@ public static class WorldUtilsRoomManager
             return;
         if ( CurrentRoom != null )
         {
+            CurrentRoom.OnExitRoom();
             RoomMount.RemoveChild(CurrentRoom);
         }
         RoomMount.AddChild(room);
         CurrentRoom = room;
+        CurrentRoom.OnEnterRoom();
     }
 
     public static void ClearLoadedRooms(bool forced = false)

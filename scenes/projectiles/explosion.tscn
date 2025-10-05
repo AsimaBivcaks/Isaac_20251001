@@ -45,11 +45,12 @@ radius = 48.010414
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_5l78t")
+DamageRefValue = 2
 KnockbackRefValue = 30.0
 animationController = NodePath("AnimationPlayer")
 wallLayer = 0
-targetLayer = 10
-hitboxArea = NodePath("Area2D")
+targetLayer = 26
+hitboxArea = NodePath("HitboxArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -33)
@@ -62,9 +63,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_a36qc")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitboxArea" type="Area2D" parent="."]
 position = Vector2(0, -25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_v5kae")
+debug_color = Color(0, 0.5950001, 0.7, 0)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SpawnPool" load_steps=2 format=3 uid="uid://pdew5pvkvss2"]
+
+[ext_resource type="Script" uid="uid://bbtallcdqe8ci" path="res://src/world/generate/SpawnPool.cs" id="1_5qi7i"]
+
+[resource]
+script = ExtResource("1_5qi7i")
+PoolName = "enemy_normal_equalchance"
+Items = PackedStringArray("pref_knight", "pref_nerveending", "pref_red_fly", "pref_selfless_knight")
+metadata/_custom_type_script = "uid://bbtallcdqe8ci"

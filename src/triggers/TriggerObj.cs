@@ -12,9 +12,9 @@ public abstract partial class TriggerObj : Area2D
 
     public void InitAndEnterTree(Node _mount, Vector2 _position)
     {
-        Position = _position;
         mount = _mount;
         mount.AddChild(this);
+        GlobalPosition = _position;
     }
 
     public override void _Ready()
