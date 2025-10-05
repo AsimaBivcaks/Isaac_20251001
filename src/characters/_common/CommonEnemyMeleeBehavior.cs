@@ -21,7 +21,7 @@ public class CommonEnemyMeleeBehavior : CharacterBehavior
             if (body is Character target)
             {
                 DamageData damage = new DamageData(
-                    self, 1, DamageType.COLLISION,
+                    self, 1, DamageType.MELEE,
                     (target.Position - self.Position).Normalized() * 10f
                 );
                 target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(damage);
@@ -40,7 +40,7 @@ public class CommonEnemyMeleeBehavior : CharacterBehavior
                 if (body is Character target)
                 {
                     DamageData damage = new DamageData(
-                        self, 1, DamageType.COLLISION,
+                        self, 1, DamageType.MELEE,
                         (target.Position - self.Position).Normalized() * 10f
                     );
                     target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(damage);

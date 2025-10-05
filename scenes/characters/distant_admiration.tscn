@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp62vbx2bi1m1"]
+
+[ext_resource type="Script" uid="uid://3twouf88nldu" path="res://src/characters/distant_admiration/DistantAdmiration.cs" id="1_cfoxj"]
+[ext_resource type="Texture2D" uid="uid://b0fj4fkcidcn8" path="res://graphics/characters/flies/familiar_orbitals_02_distantadmiration.png" id="2_y2xq4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbgi4"]
+atlas = ExtResource("2_y2xq4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tefeu"]
+atlas = ExtResource("2_y2xq4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6xl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbgi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tefeu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(10, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o6xl0"]
+b = Vector2(0, 3)
+
+[node name="DistantAdmiration" type="CharacterBody2D"]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_cfoxj")
+MeleeAreaPath = NodePath("Area2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o6xl0")
+autoplay = "default"
+frame_progress = 0.77322465
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tefeu")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_o6xl0")

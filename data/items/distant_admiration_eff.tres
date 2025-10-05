@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DistantAdmirationEffect" load_steps=3 format=3 uid="uid://dkiae20g5set5"]
+
+[ext_resource type="Texture2D" uid="uid://bi5cede1a6y6s" path="res://graphics/items/collectibles_057_distantadmiration.png" id="1_07sjc"]
+[ext_resource type="Script" uid="uid://0fx4xc8tkror" path="res://src/items/effects/DistantAdmirationEffect.cs" id="2_vjq2l"]
+
+[resource]
+script = ExtResource("2_vjq2l")
+ItemName = "eff_distant_admiration"
+Description = "Distant Admiration"
+Icon = ExtResource("1_07sjc")
+metadata/_custom_type_script = "uid://0fx4xc8tkror"

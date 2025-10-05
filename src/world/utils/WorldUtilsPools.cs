@@ -21,6 +21,9 @@ public static class WorldUtilsPools
         {"item_key", "res://data/items/key_item.tres"},
 
         {"eff_innereye", "res://data/items/innereye_eff.tres"},
+        {"eff_distant_admiration", "res://data/items/distant_admiration_eff.tres"},
+
+        {"pref_distant_admiration", "res://scenes/characters/distant_admiration.tscn"},
     };
 
     static WorldUtilsPools()

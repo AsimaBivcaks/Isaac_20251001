@@ -3,7 +3,7 @@ using System;
 
 public enum DamageType
 {
-    COLLISION,
+    MELEE,
     NORMAL,
     FIRE,
     EXPLOSION,
