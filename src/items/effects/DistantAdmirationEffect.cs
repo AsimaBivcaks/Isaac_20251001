@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class DistantAdmirationEffect : EffectItem
 {
-    PackedScene scene = GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["pref_distant_admiration"]);
+    PackedScene scene = WorldUtilsPools.GetResource<PackedScene>("pref_distant_admiration");
     DistantAdmiration distantAdmirationInstance = null;
 
     public override void OnActive(Player player)

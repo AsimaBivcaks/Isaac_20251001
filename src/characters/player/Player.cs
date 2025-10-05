@@ -61,18 +61,20 @@ public partial class Player : Character
         AddBehavior(new PlayerUsableManagementBehavior(this), BehaviorType.PlayerUsableManagement);
         AddBehavior(new PlayerEffectManagementBehavior(this), BehaviorType.PlayerEffectManagement);
         
-        projectileFactory = new ProjectileFactoryNormal(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_tear"]));
+        projectileFactory = new ProjectileFactoryNormal(WorldUtilsPools.GetResource<PackedScene>("proj_tear"));
 
         EndReady();
 
         //TEMP
         CallDeferred(nameof(TEMPtest));
-        WorldUtilsRandom.Init(12345);
-        WorldUtilsRng.Init(12345 * 31);
     }
 
     public void TEMPtest()
     {
-        WorldUtilsTriggers.SpawnItemBase(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["eff_distant_admiration"]));
+        WorldUtilsRandom.Init(12345);
+        WorldUtilsRng.Init(12345 * 31);
+        WorldUtilsRoomManager.RoomMount = Mount;
+        WorldUtilsRoomManager.LoadRoomAt("room_test", 0, 0);
+        WorldUtilsRoomManager.SetCurrentRoom(0, 0);
     }
 }

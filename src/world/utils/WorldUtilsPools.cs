@@ -1,4 +1,4 @@
-
+using Godot;
 using System.Collections.Generic;
 
 public static class WorldUtilsPools
@@ -20,12 +20,24 @@ public static class WorldUtilsPools
         {"item_bomb", "res://data/items/bomb_item.tres"},
         {"item_coin", "res://data/items/coin_item.tres"},
         {"item_key", "res://data/items/key_item.tres"},
+        {"item_battery", "res://data/items/battery_item.tres"},
 
         {"eff_innereye", "res://data/items/innereye_eff.tres"},
         {"eff_distant_admiration", "res://data/items/distant_admiration_eff.tres"},
 
         {"pref_distant_admiration", "res://scenes/characters/distant_admiration.tscn"},
+        
+        {"room_test", "res://scenes/rooms/basement_0.tscn"},
     };
+
+    public static T GetResource<T>(string key) where T : class
+    {
+        if (resourcePaths.ContainsKey(key))
+        {
+            return GD.Load<T>(resourcePaths[key]);
+        }
+        return null;
+    }
 
     static WorldUtilsPools()
     {

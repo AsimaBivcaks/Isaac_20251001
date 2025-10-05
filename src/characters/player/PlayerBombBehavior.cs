@@ -54,7 +54,7 @@ public class PlayerBombBehavior : CharacterBehavior
         bombCDTimer = BombCD;
         Bombs--;
         //generate a BombObj at player's position
-        WorldUtilsTriggers.SpawnBomb(self.Position + new Vector2(0, -.5f), self.Mount);
+        WorldUtilsSpawn.SpawnBomb(self.Position + new Vector2(0, -.5f), self.Mount);
     }
 
     public void AddBomb(int amount=1)

@@ -15,7 +15,9 @@ public class MonstroFlyBehavior : CharacterBehavior
     public MonstroFlyBehavior(Character _self, MonstroAIBehavior _stateMachine) : base(_self)
     {
         stateMachine = _stateMachine;
-        pfFountain = new ProjectileFactoryFountain(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_e_bloodtear"]));
+        pfFountain = new ProjectileFactoryFountain(
+            WorldUtilsPools.GetResource<PackedScene>("proj_tear")
+        );
     }
 
     private uint collisionLayersBackup;

@@ -10,7 +10,7 @@ public abstract class ProjectileFactory
     protected Projectile CreateProjectile(Character owner, Vector2 psu_dir, PackedScene projectileScene)
     {
         Projectile p = projectileScene.Instantiate<Projectile>();
-        p.Position = owner.Position;
+        p.Position = owner.Position + psu_dir.Normalized()*2 + new Vector2(0, -1);
         p.Velocity = psu_dir * p.SpeedRefValue;
         //owner.Mount.AddChild(p);
         return p;

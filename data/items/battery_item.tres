@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BatteryItem" load_steps=3 format=3 uid="uid://cnaxskn6bi4fs"]
+
+[ext_resource type="Texture2D" uid="uid://bjv7b16yiehnh" path="res://graphics/items/battery.tres" id="1_mfsgx"]
+[ext_resource type="Script" uid="uid://blx6rfcoaqf5h" path="res://src/items/BatteryItem.cs" id="2_f8jqh"]
+
+[resource]
+script = ExtResource("2_f8jqh")
+ItemName = "item_battery"
+Description = "+1Energy"
+Icon = ExtResource("1_mfsgx")
+metadata/_custom_type_script = "uid://blx6rfcoaqf5h"

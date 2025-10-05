@@ -13,7 +13,9 @@ public class MonstroFireBehavior : CharacterBehavior
     public MonstroFireBehavior(Character _self, MonstroAIBehavior _stateMachine) : base(_self)
     {
         stateMachine = _stateMachine;
-        pfRawDir = new ProjectileFactoryRawDir(GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["proj_e_aired_bloodtear"]));
+        pfRawDir = new ProjectileFactoryRawDir(
+            WorldUtilsPools.GetResource<PackedScene>("proj_tear")
+        );
     }
 
     public override void PlugIn()

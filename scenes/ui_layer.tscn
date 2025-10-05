@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxmtx8arnlf3g"]
+[gd_scene load_steps=14 format=3 uid="uid://bxmtx8arnlf3g"]
 
+[ext_resource type="Texture2D" uid="uid://dxd2pm6flgacr" path="res://graphics/tv_vignette.png" id="1_sahi7"]
 [ext_resource type="Script" uid="uid://bv2edmr42la00" path="res://src/ui/UIUsableStat.cs" id="1_xt7ap"]
 [ext_resource type="Texture2D" uid="uid://bgs2bpjxvtk7a" path="res://graphics/ui/ui_chargebar_bg2.png" id="2_sahi7"]
 [ext_resource type="Texture2D" uid="uid://8glprtmxw77o" path="res://graphics/ui/chargebar_bg.tres" id="3_l76gi"]
@@ -15,6 +16,12 @@
 
 [node name="UILayer" type="CanvasLayer"]
 layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2627451)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sahi7")
+centered = false
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -64,6 +71,7 @@ textureHearts = ExtResource("7_r4qgc")
 
 [node name="BossStat" type="Control" parent="UI"]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_top = 24.0

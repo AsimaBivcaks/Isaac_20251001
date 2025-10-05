@@ -23,7 +23,7 @@ public partial class ShadowVirtualZ : Sprite2D
         Modulate = new Color(0, 0, 0, 0.2f);
         Position = offset;
 
-        Texture = GD.Load<Texture2D>(WorldUtilsPools.resourcePaths["img_shadow"]);
+        Texture = WorldUtilsPools.GetResource<Texture2D>("img_shadow");
         originalWidth = Texture.GetSize().X;
 
         ZIndex = -100;

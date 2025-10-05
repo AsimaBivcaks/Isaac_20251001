@@ -10,6 +10,8 @@ public static class WorldUtilsBlackboard
     {
         Set("decision_frequency", .2f);
         Set("current_bosses", new List<Character>());
+        Set("player_instance", null);
+        Set("screen_size", new Vector2I(480, 270));
     }
 
     public static void Set(string key, object value)

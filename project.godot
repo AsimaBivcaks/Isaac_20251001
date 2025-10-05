@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=576
+window/size/viewport_width=960
+window/size/viewport_height=540
 window/stretch/mode="canvas_items"
 
 [dotnet]
@@ -107,7 +107,9 @@ reset={
 2d_physics/layer_4="Enemy&Projectile"
 2d_physics/layer_5="Explosion"
 2d_physics/layer_6="Hole"
+2d_physics/layer_7="RoomSpace"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.013335685, 0.013335688, 0.013335679, 1)

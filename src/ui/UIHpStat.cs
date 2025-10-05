@@ -25,7 +25,7 @@ public partial class UIHpStat : Control
         for (int i = 0; i < 12; i++)
         {
             hearts[i] = new Sprite2D();
-            hearts[i].Position = new Vector2(16 * (i % 6), 16 * (i / 6));
+            hearts[i].Position = new Vector2(14 * (i % 6), 14 * (i / 6));
             hearts[i].Texture = textureHearts;
             hearts[i].Hframes = frames.X;
             hearts[i].Vframes = frames.Y;

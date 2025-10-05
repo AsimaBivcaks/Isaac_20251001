@@ -336,14 +336,14 @@ headAnimationPlayer = NodePath("headanim")
 hitAnimationPlayer = NodePath("hitanim")
 
 [node name="body" type="Sprite2D" parent="AnimationController"]
-position = Vector2(0, 6)
+position = Vector2(0, 2)
 texture = ExtResource("3_kqtwu")
 hframes = 16
 vframes = 4
 frame = 6
 
 [node name="head" type="Sprite2D" parent="AnimationController"]
-position = Vector2(0, -4)
+position = Vector2(0, -8)
 texture = ExtResource("3_kqtwu")
 hframes = 16
 vframes = 4
@@ -376,11 +376,12 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_h2yge")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="InteractBox" type="Area2D" parent="."]
+position = Vector2(0, -4)
 collision_layer = 0
 collision_mask = 4
 

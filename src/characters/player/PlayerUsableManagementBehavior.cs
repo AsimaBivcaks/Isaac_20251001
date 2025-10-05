@@ -18,9 +18,23 @@ public class PlayerUsableManagementBehavior : CharacterBehavior
         Item = null;
     }
 
+    public bool CanFillEnergy()
+    {
+        return Item != null && Energy < MaxEnergy;
+    }
+
+    public void FillEnergy(int amount)
+    {
+        if (Item != null)
+        {
+            Energy += amount;
+            if (Energy > MaxEnergy) Energy = MaxEnergy;
+        }
+    }
+
     public void SetItem(UsableItem newItem)
     {
-        WorldUtilsTriggers.SpawnItem(self.Mount, self.Position, Item, false);
+        WorldUtilsSpawn.SpawnItem(self.Mount, self.Position, Item, false);
 
         Item = newItem;
         if (MaxEnergy == 0)
