@@ -16,15 +16,12 @@ public class ProjectileFactoryFountain : ProjectileFactory
     {
         int count = (int)(direction.X + .1f);
         float phase = direction.Y;
-        Vector2 w1 = new Vector2(MathF.Cos(MathF.Tau/count), MathF.Sin(MathF.Tau/count));
-        Vector2 w = new Vector2(MathF.Cos(phase), MathF.Sin(phase));
+        Vector2 w1 = MiscUtils.GetDirectionVector(MathF.Tau / count);
+        Vector2 w = MiscUtils.GetDirectionVector(phase);
         for (int i = 0; i < count; i++)
         {
             EmitPartial(owner, w);
-            w = new Vector2(
-                w.X * w1.X - w.Y * w1.Y,
-                w.X * w1.Y + w.Y * w1.X
-            );
+            w = MiscUtils.ComplexMultiply(w, w1);
         }
     }
 

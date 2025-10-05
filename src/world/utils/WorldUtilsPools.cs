@@ -19,6 +19,8 @@ public static class WorldUtilsPools
         {"item_bomb", "res://data/items/bomb_item.tres"},
         {"item_coin", "res://data/items/coin_item.tres"},
         {"item_key", "res://data/items/key_item.tres"},
+
+        {"eff_innereye", "res://data/items/innereye_eff.tres"},
     };
 
     static WorldUtilsPools()

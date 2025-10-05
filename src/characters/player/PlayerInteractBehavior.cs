@@ -5,6 +5,9 @@ public class PlayerInteractBehavior : CharacterBehavior
 {
     private Area2D interactArea;
 
+    //private PlayerEffectManagementBehavior effectBehavior;
+    //private PlayerUsableManagementBehavior usableBehavior;
+
     public PlayerInteractBehavior(Character _character, Area2D _interactArea) : base(_character)
     {
         interactArea = _interactArea;

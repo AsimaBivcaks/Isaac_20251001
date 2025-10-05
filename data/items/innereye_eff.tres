@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InnerEyeEffect" load_steps=3 format=3 uid="uid://cg7mg7ovija2c"]
+
+[ext_resource type="Texture2D" uid="uid://bscaks28k8oel" path="res://graphics/items/collectibles_002_theinnereye.png" id="1_yf054"]
+[ext_resource type="Script" uid="uid://ejcuip3w64n0" path="res://src/items/effects/InnerEyeEffect.cs" id="2_up3ix"]
+
+[resource]
+script = ExtResource("2_up3ix")
+ItemName = "eff_innereye"
+Description = "Inner eye"
+Icon = ExtResource("1_yf054")
+metadata/_custom_type_script = "uid://ejcuip3w64n0"

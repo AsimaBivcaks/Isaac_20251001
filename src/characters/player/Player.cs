@@ -73,6 +73,6 @@ public partial class Player : Character
 
     public void TEMPtest()
     {
-        //WorldUtilsTriggers.SpawnItem(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["item_key"]));
+        WorldUtilsTriggers.SpawnItem(Mount, new Vector2(40,40), GD.Load<Item>(WorldUtilsPools.resourcePaths["eff_innereye"]));
     }
 }
