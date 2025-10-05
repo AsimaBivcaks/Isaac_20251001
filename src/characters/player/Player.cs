@@ -76,5 +76,6 @@ public partial class Player : Character
         WorldUtilsRoomManager.RoomMount = Mount;
         WorldUtilsRoomManager.LoadRoomAt("room_test", 0, 0);
         WorldUtilsRoomManager.SetCurrentRoom(0, 0);
+        WorldUtilsSpawn.SpawnItem(Mount, new Vector2(200, 200), WorldUtilsPools.GetResource<Item>("eff_gnawed_leaf"));
     }
 }

@@ -13,6 +13,7 @@ public class PlayerHPBehavior : CharacterHPBehavior
 
     public PlayerHPBehavior(Player _self, int maxHP, Callable? deathCallback=null) : base(_self, maxHP, deathCallback)
     {
+        statusF["GLB_invincible"] = 0;
     }
 
     public bool CanHeal()
@@ -31,7 +32,7 @@ public class PlayerHPBehavior : CharacterHPBehavior
 
     protected override bool ProcessDamage(DamageData damageData) //dealing with elemental damage
     {
-        if (invincibilityTimer > 0)
+        if (invincibilityTimer > 0 || statusF["GLB_invincible"] > .5f)
             return false;
         Damage(damageData.damageAmount);
         // Apply knockback

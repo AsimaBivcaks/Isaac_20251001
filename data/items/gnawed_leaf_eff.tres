@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GnawedLeafEffect" load_steps=3 format=3 uid="uid://0yob72pr4p0a"]
+
+[ext_resource type="Texture2D" uid="uid://dgdmdgnlijx8t" path="res://graphics/items/collectibles_210_gnawedleaf.png" id="1_i0378"]
+[ext_resource type="Script" uid="uid://cgy847cuiql3y" path="res://src/items/effects/GnawedLeafEffect.cs" id="2_4mot0"]
+
+[resource]
+script = ExtResource("2_4mot0")
+ItemName = "eff_gnawed_leaf"
+Description = "Gnawed Leaf"
+Icon = ExtResource("1_i0378")
+metadata/_custom_type_script = "uid://cgy847cuiql3y"

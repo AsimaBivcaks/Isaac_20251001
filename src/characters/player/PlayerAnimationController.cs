@@ -20,6 +20,11 @@ public partial class PlayerAnimationController : Node2D
 
     public Player player { private get; set; }
 
+
+    [Export] private NodePath statueSprite;
+    private Sprite2D statue;
+
+
     public override void _Ready()
     {
         base._Ready();
@@ -34,6 +39,9 @@ public partial class PlayerAnimationController : Node2D
         HitAnim = GetNode<AnimationPlayer>(hitAnimationPlayer);
         headState = (AnimationNodeStateMachinePlayback)headAnim.Get("parameters/playback");
 
+
+        statue = GetNode<Sprite2D>(statueSprite);
+        statue.Visible = false;
     }
 
     public void SetBody(Vector2 moveDir)
@@ -117,5 +125,20 @@ public partial class PlayerAnimationController : Node2D
             //player.statusF["pause"] = 0;
             callback?.Call();
         };
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if (player != null && player.statusF.ContainsKey("GLB_invincible") && player.statusF["GLB_invincible"] > .5f)
+        {
+            Visible = false;
+            statue.Visible = true;
+        }
+        else
+        {
+            Visible = true;
+            statue.Visible = false;
+        }
     }
 }

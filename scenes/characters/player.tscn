@@ -1,7 +1,8 @@
-[gd_scene load_steps=40 format=3 uid="uid://cbsi7lbts3p58"]
+[gd_scene load_steps=41 format=3 uid="uid://cbsi7lbts3p58"]
 
 [ext_resource type="Script" uid="uid://yxjlyeopcoie" path="res://src/characters/player/Player.cs" id="1_dyp2m"]
 [ext_resource type="Script" uid="uid://bmwxoodblatub" path="res://src/characters/player/PlayerAnimationController.cs" id="2_atpat"]
+[ext_resource type="Texture2D" uid="uid://d3mnq5qc7w6ec" path="res://graphics/characters/player/statue.png" id="2_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://cjmamfe1sepcc" path="res://graphics/characters/player/player_hb.tres" id="3_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://dgmbqe06hnb1l" path="res://graphics/characters/player/player_sp.tres" id="4_6eyoc"]
 
@@ -326,6 +327,12 @@ MoveAcceleration = 600.0
 AnimationController = NodePath("AnimationController")
 InteractAreaPath = NodePath("InteractBox")
 
+[node name="statue" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -5)
+texture = ExtResource("2_kqtwu")
+hframes = 4
+
 [node name="AnimationController" type="Node2D" parent="."]
 script = ExtResource("2_atpat")
 bodySprite = NodePath("body")
@@ -334,6 +341,7 @@ specialSprite = NodePath("sp")
 bodyAnimationPlayer = NodePath("bodyanim")
 headAnimationPlayer = NodePath("headanim")
 hitAnimationPlayer = NodePath("hitanim")
+statueSprite = NodePath("../statue")
 
 [node name="body" type="Sprite2D" parent="AnimationController"]
 position = Vector2(0, 2)

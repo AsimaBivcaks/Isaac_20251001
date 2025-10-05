@@ -13,5 +13,5 @@ public enum BehaviorType{
     PlayerMoneyManagement,
     PlayerUsableManagement,
     PlayerEffectManagement,
-    
+    GLEff,
 }
