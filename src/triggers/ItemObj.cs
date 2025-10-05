@@ -13,7 +13,7 @@ public partial class ItemObj : TriggerObj
 
     private Sprite2D sprite;
     private RigidBody2D collTest;
-    private Texture2D itemTexture;
+    //private Texture2D itemTexture;
 
     //private Vector2 Velocity = Vector2.Zero;
 

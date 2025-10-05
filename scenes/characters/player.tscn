@@ -318,6 +318,7 @@ height = 11.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 33
 script = ExtResource("1_dyp2m")
 VelocityRefValue = 170.0
 EmitCDRefValue = 0.3

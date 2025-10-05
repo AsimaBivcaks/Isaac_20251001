@@ -6,6 +6,7 @@ public static class WorldUtilsPools
     public readonly static Dictionary<string, string> resourcePaths = new Dictionary<string, string>()
     {
         {"item_obj", "res://scenes/triggers/item_obj.tscn"},
+        {"itembase_obj", "res://scenes/triggers/item_base_obj.tscn"},
         {"bomb_obj", "res://scenes/triggers/active_bomb.tscn"},
 
         {"proj_tear", "res://scenes/projectiles/tear.tscn"},

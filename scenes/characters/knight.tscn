@@ -289,6 +289,7 @@ height = 14.0
 
 [node name="Knight" type="CharacterBody2D"]
 collision_layer = 8
+collision_mask = 33
 script = ExtResource("1_wufdn")
 velocityRefValue1 = 80.0
 velocityRefValue2 = 200.0

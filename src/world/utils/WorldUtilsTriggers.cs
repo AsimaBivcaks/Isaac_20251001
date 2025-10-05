@@ -22,4 +22,13 @@ public static class WorldUtilsTriggers
         }
         return obj;
     }
+
+    private static PackedScene itembaseObjScene = GD.Load<PackedScene>(WorldUtilsPools.resourcePaths["itembase_obj"]);
+    public static ItemBaseObj SpawnItemBase(Node mount, Vector2 position, Item item)
+    {
+        ItemBaseObj obj = (ItemBaseObj)itembaseObjScene.Instantiate();
+        obj.item = item;
+        obj.InitAndEnterTree(mount, position);
+        return obj;
+    }
 }

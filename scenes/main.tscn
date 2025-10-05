@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://xv2vn41vdrn0"]
+[gd_scene load_steps=5 format=3 uid="uid://xv2vn41vdrn0"]
 
 [ext_resource type="PackedScene" uid="uid://cbsi7lbts3p58" path="res://scenes/characters/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://cmqqri7j2gqol" path="res://scenes/characters/monstro.tscn" id="2_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bxmtx8arnlf3g" path="res://scenes/ui_layer.tscn" id="3_sugp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
@@ -48,7 +47,5 @@ shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Player" parent="World" instance=ExtResource("1_ig7tw")]
 position = Vector2(-73, -10)
-
-[node name="Monstro" parent="World" instance=ExtResource("2_ya4ey")]
 
 [node name="UILayer" parent="." instance=ExtResource("3_sugp2")]
