@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_0tmh5")
-itemName = "Key"
-description = "+1Key"
-icon = ExtResource("1_5iblx")
+ItemName = "item_key"
+Description = "+1Key"
+Icon = ExtResource("1_5iblx")
 metadata/_custom_type_script = "uid://snu6p3dhsxh2"

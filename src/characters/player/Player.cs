@@ -40,21 +40,15 @@ public partial class Player : Character
         statusF["range"] = 1.0f;
         statusF["luck"] = 1.0f;
 
-        //TEMP
-        WorldUtilsRandom.Init(12345);
-        WorldUtilsRng.Init(12345 * 31);
-
-        //maybe TEMP
-        WorldUtilsBlackboard.Set("decision_frequency", .2f);
-
         WorldUtilsBlackboard.Set("player_instance", this);
+
         AddBehavior(new PlayerMoveBehavior(this, MoveAcceleration, VelocityRefValue), BehaviorType.Move);
         AddBehavior(new PlayerEmitBehavior(this, EmitCDRefValue), BehaviorType.Attack);
         AddBehavior(new PlayerHPBehavior(
             this,
             6,
             Callable.From(() => {
-                anim.ShowSpecial(3, 3f, Callable.From(() => {
+                anim.ShowDeath(3, 3f, Callable.From(() => {
                     //GetTree().ChangeSceneToFile("res://scenes/menus/GameOver.tscn");
                     GetTree().Quit();
                 }));
@@ -71,7 +65,10 @@ public partial class Player : Character
 
         EndReady();
 
+        //TEMP
         CallDeferred(nameof(TEMPtest));
+        WorldUtilsRandom.Init(12345);
+        WorldUtilsRng.Init(12345 * 31);
     }
 
     public void TEMPtest()

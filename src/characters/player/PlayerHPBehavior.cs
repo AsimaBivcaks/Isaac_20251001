@@ -3,6 +3,8 @@ using System;
 
 public class PlayerHPBehavior : CharacterHPBehavior
 {
+    private const int HP_LIMIT = 24;
+
     private AnimationPlayer anim;
     private Tween hitTween;
 

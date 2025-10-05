@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bgyxs5aimuonu" path="res://src/triggers/ItemObj.cs" id="1_i5snm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyrvp"]
-size = Vector2(22, 22)
+size = Vector2(16, 16)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i5snm"]
 bounce = 0.56

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://8glprtmxw77o"]
+
+[ext_resource type="Texture2D" uid="uid://b1s4lrdimd3pn" path="res://graphics/ui/ui_chargebar_bg.png" id="1_5d6qg"]
+
+[resource]
+atlas = ExtResource("1_5d6qg")
+region = Rect2(0, 0, 16, 32)

@@ -24,7 +24,7 @@ public partial class ItemObj : TriggerObj
         sprite = GetNode<Sprite2D>("Spr");
         collTest = GetNode<RigidBody2D>("CollTest");
 
-        sprite.Texture = item.icon;
+        sprite.Texture = item.Icon;
     }
     
     public override void _Process(double delta)

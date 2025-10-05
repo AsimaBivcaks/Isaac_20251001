@@ -309,8 +309,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
-radius = 13.0
-height = 32.0
+radius = 8.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyp2m"]
 radius = 3.5
@@ -321,7 +321,7 @@ collision_layer = 2
 script = ExtResource("1_dyp2m")
 VelocityRefValue = 170.0
 EmitCDRefValue = 0.3
-MoveAcceleration = 800.0
+MoveAcceleration = 600.0
 AnimationController = NodePath("AnimationController")
 InteractAreaPath = NodePath("InteractBox")
 
@@ -375,6 +375,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_h2yge")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
@@ -383,6 +384,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractBox"]
-position = Vector2(0, -0.5)
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_dyp2m")
 debug_color = Color(0.6314516, 0.34699392, 1, 0)

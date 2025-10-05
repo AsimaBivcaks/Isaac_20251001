@@ -6,6 +6,12 @@ public static class WorldUtilsBlackboard
 {
     private static Dictionary<string, object> data = new Dictionary<string, object>();
 
+    static WorldUtilsBlackboard()
+    {
+        Set("decision_frequency", .2f);
+        Set("current_bosses", new List<Character>());
+    }
+
     public static void Set(string key, object value)
     {
         data[key] = value;

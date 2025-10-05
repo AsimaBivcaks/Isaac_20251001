@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://xv2vn41vdrn0"]
+[gd_scene load_steps=6 format=3 uid="uid://xv2vn41vdrn0"]
 
 [ext_resource type="PackedScene" uid="uid://cbsi7lbts3p58" path="res://scenes/characters/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cmqqri7j2gqol" path="res://scenes/characters/monstro.tscn" id="2_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bxmtx8arnlf3g" path="res://scenes/ui_layer.tscn" id="3_sugp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(379, 20)
@@ -20,29 +22,33 @@ y_sort_enabled = true
 position = Vector2(-202, -112)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D3"]
-position = Vector2(204.5, -1.375)
+position = Vector2(208, 12)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="World/StaticBody2D3"]
 position = Vector2(-5, 215)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D3/StaticBody2D3"]
-position = Vector2(204.5, -1.375)
+position = Vector2(204, -6)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="World"]
 position = Vector2(-219, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D2"]
-position = Vector2(25, -1.375)
+position = Vector2(44, 1)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="World"]
 position = Vector2(168, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
-position = Vector2(25, -1.375)
+position = Vector2(6, -1)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Player" parent="World" instance=ExtResource("1_ig7tw")]
 position = Vector2(-73, -10)
+
+[node name="Monstro" parent="World" instance=ExtResource("2_ya4ey")]
+
+[node name="UILayer" parent="." instance=ExtResource("3_sugp2")]

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Monstro : Character, IShadow
+public partial class Monstro : BossCharacter, IShadow
 {
     [Export] public float velocityRefValue;
     [Export] public NodePath animationController;

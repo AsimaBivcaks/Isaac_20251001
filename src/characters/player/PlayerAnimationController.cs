@@ -91,4 +91,17 @@ public partial class PlayerAnimationController : Node2D
             head.Visible = true;
         };
     }
+    
+    public void ShowDeath(int frame, float duration, Callable? callback=null)
+    {
+        special.Frame = frame;
+        special.Visible = true;
+        body.Visible = false;
+        head.Visible = false;
+        player.statusF["pause"] = 1;
+        GetTree().CreateTimer(duration).Timeout += () => {
+            //player.statusF["pause"] = 0;
+            callback?.Call();
+        };
+    }
 }

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_1qkvv")
-itemName = "Heart"
-description = "+2HP"
-icon = ExtResource("1_ex8eu")
+ItemName = "item_heart"
+Description = "+2HP"
+Icon = ExtResource("1_ex8eu")
 metadata/_custom_type_script = "uid://b57xkn2e7v3ny"

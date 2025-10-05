@@ -19,9 +19,9 @@ using System;
 [GlobalClass]
 public abstract partial class Item : Resource
 {
-    [Export] public string itemName = "Item";
-    [Export] public string description = "This is an item.";
-    [Export] public Texture2D icon;
+    [Export] public string ItemName = "Item";
+    [Export] public string Description = "This is an item.";
+    [Export] public Texture2D Icon;
 
     public abstract void OnPlayerGet(Player player);
     public abstract bool IsPickable(Player player);
