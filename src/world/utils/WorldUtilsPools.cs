@@ -8,6 +8,7 @@ public static class WorldUtilsPools
         {"item_obj", "res://scenes/triggers/item_obj.tscn"},
         {"itembase_obj", "res://scenes/triggers/item_base_obj.tscn"},
         {"bomb_obj", "res://scenes/triggers/active_bomb.tscn"},
+        {"doorfiller", "res://scenes/misc/doorfiller.tscn"},
 
         {"proj_tear", "res://scenes/projectiles/tear.tscn"},
         {"proj_e_bloodtear", "res://scenes/projectiles/e_bloodtear.tscn"},
@@ -45,11 +46,26 @@ public static class WorldUtilsPools
         {"room_test", "res://scenes/rooms/basement_0.tscn"},
     };
 
+    public readonly static Dictionary<string, string> roomSpacePaths = new Dictionary<string, string>()
+    {
+        //rs LT RT LB RB .tres
+        {"room_test", "res://data/rooms/rs1000.tres"},
+    };
+
     public static T GetResource<T>(string key) where T : class
     {
         if (resourcePaths.ContainsKey(key))
         {
             return GD.Load<T>(resourcePaths[key]);
+        }
+        return null;
+    }
+
+    public static RoomSpace GetRoomSpace(string roomName)
+    {
+        if (roomSpacePaths.ContainsKey(roomName))
+        {
+            return GD.Load<RoomSpace>(roomSpacePaths[roomName]);
         }
         return null;
     }

@@ -30,6 +30,7 @@ public class PlayerInteractBehavior : CharacterBehavior
                 }
             }
             if(body is InteractableObj obj2){
+                GD.Print("Interacting with object: ",obj2.GetType());
                 obj2.OnPlayerInteract((Player)self);
             }
         };

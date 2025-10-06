@@ -9,7 +9,7 @@ public partial class Camera : Camera2D
     public override void _Ready()
     {
         base._Ready();
-        halfScreenSize = WorldUtilsBlackboard.Get<Vector2>("screen_size") / 2;
+        halfScreenSize = WorldUtilsBlackboard.Get<Vector2I>("screen_size") / 2;
     }
 
     public override void _Process(double delta)
@@ -23,7 +23,7 @@ public partial class Camera : Camera2D
             {
                 GlobalPosition = WorldUtilsRoomManager
                     .CurrentRoom
-                    .RoomSpace
+                    .roomSpace
                     .GetIdealCameraCenterPosition(Follow.GlobalPosition)
                 - halfScreenSize;
             }

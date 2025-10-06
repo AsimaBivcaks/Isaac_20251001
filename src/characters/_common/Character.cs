@@ -72,7 +72,7 @@ public abstract partial class Character : CharacterBody2D
     {
         base._Ready();
 
-        //TEMP
+        //Maybe TEMP
         Mount = GetParent<Node>();
 
         statusV["inertia"] = new Vector2(0, 0);

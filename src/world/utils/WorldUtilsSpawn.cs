@@ -10,6 +10,7 @@ public static class WorldUtilsSpawn
         bomb.InitAndEnterTree(mount, position);
     }
 
+    //Don't use this outside Room, use Room.AddItem instead
     private static PackedScene itemObjScene = WorldUtilsPools.GetResource<PackedScene>("item_obj");
     public static ItemObj SpawnItem(Node mount, Vector2 position, Item item, bool withJelly = true)
     {
@@ -23,6 +24,7 @@ public static class WorldUtilsSpawn
         return obj;
     }
 
+    //Don't use this outside Room, use Room.AddItemBase instead
     private static PackedScene itembaseObjScene = WorldUtilsPools.GetResource<PackedScene>("itembase_obj");
     public static ItemBaseObj SpawnItemBase(Node mount, Vector2 position, Item item)
     {
@@ -32,7 +34,7 @@ public static class WorldUtilsSpawn
         return obj;
     }
     
-
+    //Don't use this outside Room, use Room.AddCharacter instead
     public static Character SpawnEnemy(Node mount, Vector2 position, string name)
     {
         if (!WorldUtilsPools.resourcePaths.ContainsKey(name))

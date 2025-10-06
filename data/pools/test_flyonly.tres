@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SpawnPool" load_steps=2 format=3 uid="uid://cvth15rfoyv5d"]
+
+[ext_resource type="Script" uid="uid://bbtallcdqe8ci" path="res://src/world/generate/SpawnPool.cs" id="1_cvkaj"]
+
+[resource]
+script = ExtResource("1_cvkaj")
+Items = PackedStringArray("pref_red_fly")
+metadata/_custom_type_script = "uid://bbtallcdqe8ci"

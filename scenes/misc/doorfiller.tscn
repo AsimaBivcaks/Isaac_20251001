@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://sqh8a8wl04yn"]
+
+[ext_resource type="Script" uid="uid://c26qtycuxwux1" path="res://src/world/DoorFiller.cs" id="1_hr21e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kd67c"]
+size = Vector2(24, 6)
+
+[node name="Block" type="StaticBody2D"]
+script = ExtResource("1_hr21e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_kd67c")
+debug_color = Color(0.55, 0.55, 0.55, 0.28235295)

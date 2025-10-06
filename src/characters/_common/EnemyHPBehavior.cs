@@ -5,7 +5,7 @@ public abstract class EnemyHPBehavior : CharacterHPBehavior
 {
     public SpawnPool DeathSpawnPool { get; set; } = null;
 
-    protected EnemyHPBehavior(Character _self, int _maxHP, Callable? deathCallback = null) : base(_self, _maxHP, deathCallback)
+    public EnemyHPBehavior(Character _self, int _maxHP, Callable? deathCallback = null) : base(_self, _maxHP, deathCallback)
     {
     }
 
@@ -15,6 +15,10 @@ public abstract class EnemyHPBehavior : CharacterHPBehavior
         var originalDeathCallback = DeathCallback;
         DeathCallback = Callable.From(() => {
             DeathSpawn();
+            if (WorldUtilsRoomManager.CurrentRoom != null)
+            {
+                WorldUtilsRoomManager.CurrentRoom.OnEnemyDeath();
+            }
             originalDeathCallback?.Call();
         });
     }

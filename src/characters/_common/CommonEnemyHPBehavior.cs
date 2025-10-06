@@ -11,7 +11,7 @@ public class CommonEnemyHPBehavior : EnemyHPBehavior
     {
         HP -= damageData.damageAmount;
 
-        //TEMP
+        //DEBUG
         GD.Print($"Enemy took {damageData.damageAmount} damage, current HP: {HP}/{MaxHP}");
 
         // Apply knockback

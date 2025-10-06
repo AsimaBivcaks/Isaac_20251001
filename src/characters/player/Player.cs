@@ -75,8 +75,11 @@ public partial class Player : Character
         WorldUtilsRandom.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007));
         WorldUtilsRng.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007 * 31));
         WorldUtilsRoomManager.RoomMount = Mount;
-        WorldUtilsRoomManager.LoadRoomAt("room_test", 0, 0);
+        WorldUtilsRoomManager.TryArrangeRoomAt("room_test", 0, 0);
+        WorldUtilsRoomManager.TryArrangeRoomAt("room_test", 1, 0);
+        WorldUtilsRoomManager.AutoSetCurrentRoom(0, 0);
         WorldUtilsRoomManager.SetCurrentRoom(0, 0);
-        WorldUtilsSpawn.SpawnItem(Mount, new Vector2(200, 200), WorldUtilsPools.GetResource<Item>("usable_razorblade"));
+        WorldUtilsRoomManager.CurrentRoom.AddItemBase(WorldUtilsPools.GetResource<Item>("usable_thebookofsin"), new Vector2(300, 200));
+        WorldUtilsRoomManager.CurrentRoom.AddItem(WorldUtilsPools.GetResource<Item>("item_key"), new Vector2(100, 200));
     }
 }

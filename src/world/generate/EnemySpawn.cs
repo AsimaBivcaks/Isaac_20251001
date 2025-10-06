@@ -11,6 +11,7 @@ public partial class EnemySpawn : Spawn
             Character enemy = (Character)scene.Instantiate();
             room.AddCharacter(enemy);
             enemy.GlobalPosition = GlobalPosition;
+            GD.Print("room pos", room.GridPosition);
         }
     }
 }

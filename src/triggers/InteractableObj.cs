@@ -5,7 +5,7 @@ public partial class InteractableObj : TriggerObj
 {
     public virtual void OnPlayerInteract(Player player)
     {
-        //TEMP
-        GD.Print("Interacted.");
+        //DEBUG
+        GD.Print("Interacted with object: ",this.GetType());
     }
 }

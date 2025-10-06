@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class KnightHPBehavior : CharacterHPBehavior
+public class KnightHPBehavior : EnemyHPBehavior
 {
     public KnightHPBehavior(Character _self, int maxHP, Callable? deathCallback=null) : base(_self, maxHP, deathCallback)
     {
@@ -17,9 +17,6 @@ public class KnightHPBehavior : CharacterHPBehavior
                 damageAmount = 0;
         }
         HP -= damageAmount;
-
-        //TEMP
-        GD.Print($"Knight took {damageAmount} damage, current HP: {HP}/{MaxHP}");
 
         // Apply knockback
         statusV["inertia"] += damageData.knockbackVector;

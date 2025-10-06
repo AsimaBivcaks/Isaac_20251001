@@ -300,7 +300,7 @@ PlayerDetectorPath = NodePath("detect")
 
 [node name="detect" type="Node2D" parent="."]
 script = ExtResource("2_2r4hc")
-collisionLayer = 3
+collisionLayer = 2
 
 [node name="sprbody" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 7)

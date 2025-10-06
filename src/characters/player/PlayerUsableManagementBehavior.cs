@@ -47,8 +47,7 @@ public class PlayerUsableManagementBehavior : CharacterBehavior
     public void SetItem(UsableItem newItem)
     {
         if (item != null)
-            WorldUtilsSpawn.SpawnItem(self.Mount, self.Position, item, false);
-
+            WorldUtilsRoomManager.CurrentRoom.AddItem(item, self.GlobalPosition);
         item = newItem;
         if (MaxEnergy == 0)
         {
