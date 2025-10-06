@@ -3,6 +3,9 @@ using System;
 
 public static class WorldUtilsRoomManager
 {
+    public const int MAX_ROOMS_X = 10;
+    public const int MAX_ROOMS_Y = 10;
+
     public static Room CurrentRoom = null;
     public static Vector2I CurrentRoomGridPosition
     {
@@ -12,9 +15,9 @@ public static class WorldUtilsRoomManager
             return CurrentRoom.GridPosition;
         }
     }
-    private static String[,] RoomArrangement = new String[10,10]; //max 10x10 screens
-    private static Vector2I[,] RoomArrangementOffsets = new Vector2I[10,10]; //offsets for rooms that are larger than 1x1
-    private static Room[,] Rooms = new Room[10,10];
+    public static String[,] RoomArrangement = new String[MAX_ROOMS_X, MAX_ROOMS_Y];
+    public static Vector2I[,] RoomArrangementOffsets = new Vector2I[MAX_ROOMS_X, MAX_ROOMS_Y]; //offsets for rooms that are larger than 1x1
+    public static Room[,] Rooms = new Room[MAX_ROOMS_X, MAX_ROOMS_Y];
     public static Node RoomMount { set; private get; } = null;
 
     public delegate void SR(Room originalRoom, Room newRoom);
@@ -23,7 +26,7 @@ public static class WorldUtilsRoomManager
 
     public static bool CheckRoomAt(Vector2I gridPos)
     {
-        if ( gridPos.X < 0 || gridPos.X >= Rooms.GetLength(0) || gridPos.Y < 0 || gridPos.Y >= Rooms.GetLength(1) )
+        if ( gridPos.X < 0 || gridPos.X >= MAX_ROOMS_X || gridPos.Y < 0 || gridPos.Y >= MAX_ROOMS_Y )
             return false;
         return !string.IsNullOrEmpty(RoomArrangement[gridPos.X, gridPos.Y]);
     }
@@ -39,7 +42,7 @@ public static class WorldUtilsRoomManager
         Vector2 screenSize = WorldUtilsBlackboard.Get<Vector2I>("screen_size");
         int x = (int)(playerGlobalPosition.X / screenSize.X);
         int y = (int)(playerGlobalPosition.Y / screenSize.Y);
-        if( x < 0 || x >= Rooms.GetLength(0) || y < 0 || y >= Rooms.GetLength(1) )
+        if( x < 0 || x >= MAX_ROOMS_X || y < 0 || y >= MAX_ROOMS_Y )
             return;
         if( Rooms[x,y] == null )
         {
@@ -61,7 +64,7 @@ public static class WorldUtilsRoomManager
         //Vector2 screenSize = WorldUtilsBlackboard.Get<Vector2I>("screen_size");
         int x = gridPos.X;
         int y = gridPos.Y;
-        if( x < 0 || x >= Rooms.GetLength(0) || y < 0 || y >= Rooms.GetLength(1) )
+        if( x < 0 || x >= MAX_ROOMS_X || y < 0 || y >= MAX_ROOMS_Y )
             return;
         if( Rooms[x,y] == null )
         {
@@ -205,7 +208,7 @@ public static class WorldUtilsRoomManager
 
     public static void SetCurrentRoom(int x, int y)
     {
-        if ( x < 0 || x >= Rooms.GetLength(0) || y < 0 || y >= Rooms.GetLength(1) )
+        if ( x < 0 || x >= MAX_ROOMS_X || y < 0 || y >= MAX_ROOMS_Y )
             return;
         Room room = Rooms[x,y];
         if ( room == null || room == CurrentRoom || RoomMount == null )
@@ -224,8 +227,8 @@ public static class WorldUtilsRoomManager
 
     public static void ClearLoadedRooms(bool forced = false)
     {
-        for ( int i = 0; i < Rooms.GetLength(0); i++ )
-            for ( int j = 0; j < Rooms.GetLength(1); j++ )
+        for ( int i = 0; i < MAX_ROOMS_X; i++ )
+            for ( int j = 0; j < MAX_ROOMS_Y; j++ )
                 if( Rooms[i,j] != null && (Rooms[i,j] != CurrentRoom || forced) )
                 {
                     Rooms[i,j].QueueFree();

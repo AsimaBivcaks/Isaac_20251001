@@ -9,6 +9,8 @@ public static class WorldUtilsPools
         {"itembase_obj", "res://scenes/triggers/item_base_obj.tscn"},
         {"bomb_obj", "res://scenes/triggers/active_bomb.tscn"},
         {"doorfiller", "res://scenes/misc/doorfiller.tscn"},
+        {"player", "res://scenes/characters/player.tscn"},
+        {"hud", "res://scenes/ui_layer.tscn"},
 
         {"proj_tear", "res://scenes/projectiles/tear.tscn"},
         {"proj_e_bloodtear", "res://scenes/projectiles/e_bloodtear.tscn"},
@@ -38,8 +40,6 @@ public static class WorldUtilsPools
         {"pref_nerveending", "res://scenes/characters/nerveending.tscn"},
         {"pref_red_fly", "res://scenes/characters/red_fly.tscn"},
         {"pref_selfless_knight", "res://scenes/characters/selfless_knight.tscn"},
-
-        {"player", "res://scenes/characters/player.tscn"},
 
         {"pool_thebookofsin", "res://data/pools/thebookofsin_pool.tres"},
         

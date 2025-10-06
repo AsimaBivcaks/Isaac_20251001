@@ -3,6 +3,8 @@ using System;
 
 public partial class World : Node2D
 {
+    [Export] SpawnPool roomPool;
+
     public static World Instance { get; private set; } = null;
 
     public override void _Ready()
@@ -15,6 +17,24 @@ public partial class World : Node2D
             return;
         }
         Instance = this;
+
+        CallDeferred("EndReady");
+    }
+
+    public void EndReady()
+    {
+        PackedScene playerScene = WorldUtilsPools.GetResource<PackedScene>("player");
+        if ( playerScene == null ) return;
+        var player = playerScene.Instantiate<Player>();
+        if ( player == null ) return;
+        player.GlobalPosition = new Vector2(84, 87);
+        AddChild(player);
+
+        PackedScene hudScene = WorldUtilsPools.GetResource<PackedScene>("hud");
+        if ( hudScene == null ) return;
+        var hud = hudScene.Instantiate<CanvasLayer>();
+        if ( hud == null ) return;
+        GetParent().AddChild(hud);
     }
 
     public void IntoDoor(Vector2I doorLocalGrid, Vector2I doorLeadsTo)

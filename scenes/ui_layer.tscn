@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxmtx8arnlf3g"]
+[gd_scene load_steps=16 format=3 uid="uid://bxmtx8arnlf3g"]
 
 [ext_resource type="Texture2D" uid="uid://dxd2pm6flgacr" path="res://graphics/tv_vignette.png" id="1_sahi7"]
 [ext_resource type="Script" uid="uid://bv2edmr42la00" path="res://src/ui/UIUsableStat.cs" id="1_xt7ap"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://ddw2agussyler" path="res://src/ui/UIPickupStat.cs" id="10_to48l"]
 [ext_resource type="Texture2D" uid="uid://cspvtkavrnvt8" path="res://graphics/ui/pickups.tres" id="11_3viga"]
 [ext_resource type="LabelSettings" uid="uid://dlfv7p83oxs1c" path="res://data/hudfont.tres" id="12_tdju3"]
+[ext_resource type="Script" uid="uid://b12dhm3ord05m" path="res://src/ui/MiniMap.cs" id="14_l76gi"]
+[ext_resource type="Texture2D" uid="uid://dsb7yaf3l1t7x" path="res://graphics/ui/minimap.png" id="15_5gm3c"]
 
 [node name="UILayer" type="CanvasLayer"]
 layer = 5
@@ -149,3 +151,17 @@ offset_right = 57.0
 offset_bottom = 23.5
 text = "00"
 label_settings = ExtResource("12_tdju3")
+
+[node name="MiniMap" type="Panel" parent="UI"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 98.0
+grow_horizontal = 0
+script = ExtResource("14_l76gi")
+roomsTex = ExtResource("15_5gm3c")

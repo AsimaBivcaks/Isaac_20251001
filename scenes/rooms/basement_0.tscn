@@ -253,7 +253,7 @@ shape = SubResource("RectangleShape2D_j0b2f")
 position = Vector2(135, 191)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("7_sinwk")]
-position = Vector2(294, 192)
+position = Vector2(334, 191)
 
 [node name="Spike" parent="." instance=ExtResource("8_0be07")]
 position = Vector2(104, 88)
