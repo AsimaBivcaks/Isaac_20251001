@@ -16,6 +16,11 @@ public static class WorldUtilsRng
         return (float)(rng.NextDouble() * (max - min) + min);
     }
 
+    public static float Randomf()
+    {
+        return (float)rng.NextDouble();
+    }
+
     public static int RandomiRange(int min, int max)
     {
         return rng.Next(min, max);

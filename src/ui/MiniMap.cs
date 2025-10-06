@@ -41,17 +41,17 @@ public partial class MiniMap : Panel
         rooms = new Sprite2D[WURM.MAX_ROOMS_X, WURM.MAX_ROOMS_Y];
         for ( int i = 0; i < WURM.MAX_ROOMS_X; i++ )
             for ( int j = 0; j < WURM.MAX_ROOMS_Y; j++ )
-            {
-                if (WURM.CheckRoomAt(new Vector2I(i, j)) && WURM.RoomArrangementOffsets[i, j] == Vector2I.Zero)
+                if(WURM.CheckRoomAt(new Vector2I(i, j)) && WURM.RoomArrangementOffsets[i, j] == Vector2I.Zero)
                 {
+                    var rs = WorldUtilsPools.GetRoomSpace(WURM.RoomArrangement[i, j]);
+                    uint code = RoomSpace.GetCode(rs);
                     Sprite2D spr = new Sprite2D();
                     spr.Texture = roomsTex;
                     spr.Centered = false;
                     spr.Hframes = HFRAMES;
                     spr.Vframes = VFRAMES;
                     spr.Position = new Vector2(i * ROOM_SIZE_X, j * ROOM_SIZE_Y);
-                    spr.Modulate = COLOR_ROOM_UNVISITED;
-                    uint code = RoomSpace.GetCode(WorldUtilsPools.GetRoomSpace(WURM.RoomArrangement[i, j]));
+                    spr.Modulate = COLOR_ROOM_UNKNOWN;
                     int frame = CODE2FRAME[code];
                     if (frame < 0 || frame >= HFRAMES * VFRAMES)
                     {
@@ -61,8 +61,9 @@ public partial class MiniMap : Panel
                     spr.Frame = frame;
                     roomContainer.AddChild(spr);
                     rooms[i, j] = spr;
+                    if (rs.Is14) //Their sprites stay in the top-right corner
+                        spr.Position -= new Vector2(ROOM_SIZE_X, 0);
                 }
-            }
     }
 
     private void OnRoomSwitched(Room r1, Room r2)
@@ -83,16 +84,15 @@ public partial class MiniMap : Panel
             new Vector2(-pos.X * ROOM_SIZE_X, -pos.Y * ROOM_SIZE_Y) * SCALE +
             new Vector2(48, 48) -
             new Vector2(ROOM_SIZE_X, ROOM_SIZE_Y) * SCALE / 2f;
-        
-        Vector2I cpos = r2.GridPosition;
-        if (rooms[cpos.X, cpos.Y] != null)
-            rooms[cpos.X, cpos.Y].Modulate = COLOR_ROOM_CURRENT;
+
+        if (rooms[pos.X, pos.Y] != null)
+            rooms[pos.X, pos.Y].Modulate = COLOR_ROOM_CURRENT;
         
         foreach ( var child in r2.GetChildren() )
         {
             if( child is Door door )
             {
-                Vector2I apos = cpos + door.LocalGrid + door.LeadsTo;
+                Vector2I apos = pos + door.LocalGrid + door.LeadsTo;
                 if ( apos.X < 0 || apos.X >= WURM.MAX_ROOMS_X ||
                     apos.Y < 0 || apos.Y >= WURM.MAX_ROOMS_Y )
                     continue;

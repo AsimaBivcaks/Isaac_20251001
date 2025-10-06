@@ -116,6 +116,9 @@ public partial class Room : Node2D
     
     public static void DoorPosCalc(Node2D door, Vector2I LocalGrid, Vector2I LeadsTo)
     {
+        if (WorldUtilsRoomManager.CurrentRoom.roomSpace.Is14)
+            LocalGrid += new Vector2I(1,0);
+        
         door.Position = LocalGrid * WorldUtilsBlackboard.Get<Vector2I>("screen_size");
         if (LeadsTo == Vector2I.Up)
         {

@@ -34,7 +34,7 @@ public partial class SpawnPool : Resource
         if (totalWeight < .01f)
             equalChanceMode = true;
 
-        float roll = GD.Randf();
+        float roll = WorldUtilsRng.Randomf();
         return RollItem<T>(roll);
     }
 
@@ -42,7 +42,7 @@ public partial class SpawnPool : Resource
     {
         if (equalChanceMode)
         {
-            int index = (int)(GD.Randf() * Items.Length);
+            int index = (int)(rollval * Items.Length);
             return GetItemByIndex<T>(index);
         }
         else
@@ -66,5 +66,40 @@ public partial class SpawnPool : Resource
         if (string.IsNullOrEmpty(s))
             return null;
         return WorldUtilsPools.GetResource<T>(s);
+    }
+
+    public string RollRaw()
+    {
+        if (Items.Length == 0)
+            return null;
+
+        if (totalWeight < 0f)
+            Initialize();
+        
+        if (totalWeight < .01f)
+            equalChanceMode = true;
+
+        float roll = WorldUtilsRng.Randomf();
+        return RollRawItem(roll);
+    }
+
+    private string RollRawItem(float rollval)
+    {
+        if (equalChanceMode)
+        {
+            int index = (int)(rollval * Items.Length);
+            return Items[index];
+        }
+        else
+        {
+            float r = rollval * totalWeight;
+            for (int i = 0; i < Weights.Length; i++)
+            {
+                r -= Weights[i];
+                if (r <= 0f)
+                    return Items[i];
+            }
+        }
+        return null;
     }
 }

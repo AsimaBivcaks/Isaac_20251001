@@ -1,10 +1,11 @@
 using Godot;
 using System;
 
+//For Room-14 (_|), use its top-right corner as the reference point
 public static class WorldUtilsRoomManager
 {
-    public const int MAX_ROOMS_X = 10;
-    public const int MAX_ROOMS_Y = 10;
+    public const int MAX_ROOMS_X = 11;
+    public const int MAX_ROOMS_Y = 11;
 
     public static Room CurrentRoom = null;
     public static Vector2I CurrentRoomGridPosition
@@ -36,7 +37,7 @@ public static class WorldUtilsRoomManager
         AutoSetCurrentRoom(new Vector2I(x,y));
     }
 
-    public static void AutoSetCurrentRoom(Vector2 playerGlobalPosition)
+    /*public static void AutoSetCurrentRoom(Vector2 playerGlobalPosition)
     {
         if ( RoomMount == null ) return;
         Vector2 screenSize = WorldUtilsBlackboard.Get<Vector2I>("screen_size");
@@ -56,7 +57,7 @@ public static class WorldUtilsRoomManager
             }
         }
         SetCurrentRoom(x,y);
-    }
+    }*/
 
     public static void AutoSetCurrentRoom(Vector2I gridPos)
     {
@@ -68,11 +69,7 @@ public static class WorldUtilsRoomManager
             return;
         if( Rooms[x,y] == null )
         {
-            if(!TryLoadRoomAt(RoomArrangement[x,y], x, y))
-            {
-                GD.PrintErr("Failed to load room at ", x, ",", y," due to spacial overlapping or other issues.");
-                return;
-            }
+            TryLoadRoomAt(RoomArrangement[x,y], x, y);
         }
         SetCurrentRoom(x,y);
     }
@@ -135,6 +132,10 @@ public static class WorldUtilsRoomManager
             GD.PrintErr("Failed to load RoomSpace for room ", roomName);
             return false;
         }
+
+        if (roomSpace.Is14)
+            return TryArrangeRoom14(roomName, x, y);
+        
         uint code = RoomSpace.GetCode(roomSpace);
         if ( (code & 1) != 0 && !string.IsNullOrEmpty(RoomArrangement[x,y]) )
             return false;
@@ -165,6 +166,24 @@ public static class WorldUtilsRoomManager
 
         return true;
     }
+    private static bool TryArrangeRoom14(string roomName, int x, int y)
+    {
+        if ( !string.IsNullOrEmpty(RoomArrangement[x,y]) )
+            return false;
+        if ( !string.IsNullOrEmpty(RoomArrangement[x,y+1]) )
+            return false;
+        if ( !string.IsNullOrEmpty(RoomArrangement[x-1,y+1]) )
+            return false;
+        
+        RoomArrangement[x,y] = roomName;
+        RoomArrangementOffsets[x,y] = new Vector2I(0,0);
+        RoomArrangement[x,y+1] = roomName;
+        RoomArrangementOffsets[x,y+1] = new Vector2I(0,1);
+        RoomArrangement[x-1,y+1] = roomName;
+        RoomArrangementOffsets[x-1,y+1] = new Vector2I(-1,1);
+
+        return true;
+    }
 
     public static bool TryLoadRoomAt(string roomName, int x, int y)
     {
@@ -176,16 +195,6 @@ public static class WorldUtilsRoomManager
         }
 
         uint code = RoomSpace.GetCode(roomSpace);
-        GD.Print("Room code: ", code);
-        if ( (code & 1) != 0 && Rooms[x,y] != null )
-            return false;
-        if ( (code & 2) != 0 && Rooms[x+1,y] != null )
-            return false;
-        if ( (code & 4) != 0 && Rooms[x,y+1] != null )
-            return false;
-        if ( (code & 8) != 0 && Rooms[x+1,y+1] != null )
-            return false;
-        GD.Print("Space available for room ", roomName);
         Room room = WorldUtilsPools.GetResource<PackedScene>(roomName)?.Instantiate<Room>();
         if( room == null )
         {
@@ -193,6 +202,8 @@ public static class WorldUtilsRoomManager
             return false;
         }
         room.GridPosition = new Vector2I(x,y);
+        if (roomSpace.Is14)
+            return LoadRoom14(room, x, y);
 
         if ( (code & 1) != 0 )
             Rooms[x,y] = room;
@@ -203,6 +214,13 @@ public static class WorldUtilsRoomManager
         if ( (code & 8) != 0 )
             Rooms[x+1,y+1] = room;
         
+        return true;
+    }
+    private static bool LoadRoom14(Room room, int x, int y)
+    {
+        Rooms[x,y] = room;
+        Rooms[x,y+1] = room;
+        Rooms[x-1,y+1] = room;
         return true;
     }
 

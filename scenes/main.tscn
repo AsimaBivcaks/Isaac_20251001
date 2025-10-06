@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://xv2vn41vdrn0"]
+[gd_scene load_steps=5 format=3 uid="uid://xv2vn41vdrn0"]
 
 [ext_resource type="Script" uid="uid://cpv6r8j5myj7r" path="res://src/world/Camera.cs" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://drhlsauuf5k84" path="res://src/world/World.cs" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://bbtallcdqe8ci" path="res://src/world/generate/SpawnPool.cs" id="3_sugp2"]
+
+[sub_resource type="Resource" id="Resource_jyhfs"]
+script = ExtResource("3_sugp2")
+Items = PackedStringArray("room_test")
+metadata/_custom_type_script = "uid://bbtallcdqe8ci"
 
 [node name="Main" type="Node2D"]
 
@@ -14,3 +20,4 @@ script = ExtResource("1_jyhfs")
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("2_jyhfs")
+roomPool = SubResource("Resource_jyhfs")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wp1yuha4u5x5"]
+[gd_scene load_steps=13 format=3 uid="uid://wp1yuha4u5x5"]
 
 [ext_resource type="Texture2D" uid="uid://ct672xey75fm5" path="res://graphics/world/door.tres" id="1_7nbxa"]
 [ext_resource type="Script" uid="uid://cmec28myc6x4e" path="res://src/world/Door.cs" id="1_7uq8g"]
@@ -264,6 +264,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uq8g"]
 size = Vector2(22, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4b2t"]
+size = Vector2(48, 13)
+
 [node name="Door" type="Node2D"]
 z_index = -5
 script = ExtResource("1_7uq8g")
@@ -346,3 +349,10 @@ position = Vector2(0, -6)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
 shape = SubResource("RectangleShape2D_7uq8g")
 debug_color = Color(0.55, 0.55, 0.55, 0.28235295)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_g4b2t")

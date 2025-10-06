@@ -44,7 +44,7 @@ public partial class Door : Node2D
     public void FirstEnteredThisRoom(Room room)
     {
         this.room = room;
-        if (!WorldUtilsRoomManager.CheckRoomAt( room.GridPosition + LeadsTo ))
+        if (!WorldUtilsRoomManager.CheckRoomAt( room.GridPosition + LocalGrid + LeadsTo ))
         {
             var filler = WorldUtilsPools.GetResource<PackedScene>("doorfiller")?.Instantiate<DoorFiller>();
             if (filler == null)

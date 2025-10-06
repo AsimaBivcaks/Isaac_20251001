@@ -7,6 +7,8 @@ public partial class World : Node2D
 
     public static World Instance { get; private set; } = null;
 
+    private WorldGenerator generator = new WorldGenerator();
+
     public override void _Ready()
     {
         base._Ready();
@@ -18,15 +20,24 @@ public partial class World : Node2D
         }
         Instance = this;
 
-        CallDeferred("EndReady");
+        WorldUtilsRandom.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007));
+        WorldUtilsRng.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007 * 31));
+        WorldUtilsRoomManager.RoomMount = this;
+        generator.roomPool = roomPool;
+
+        Vector2I startRoom = new Vector2I(5,5);
+        generator.GenerateWorldFrom(startRoom);
+
+        CallDeferred("EndReady", startRoom);
     }
 
-    public void EndReady()
+    public void EndReady(Vector2I startRoom)
     {
         PackedScene playerScene = WorldUtilsPools.GetResource<PackedScene>("player");
         if ( playerScene == null ) return;
         var player = playerScene.Instantiate<Player>();
         if ( player == null ) return;
+        player.Mount = this;
         player.GlobalPosition = new Vector2(84, 87);
         AddChild(player);
 
@@ -35,6 +46,8 @@ public partial class World : Node2D
         var hud = hudScene.Instantiate<CanvasLayer>();
         if ( hud == null ) return;
         GetParent().AddChild(hud);
+
+        WorldUtilsRoomManager.AutoSetCurrentRoom(startRoom);
     }
 
     public void IntoDoor(Vector2I doorLocalGrid, Vector2I doorLeadsTo)
@@ -50,7 +63,7 @@ public partial class World : Node2D
             return;
         }
 
-        Vector2I targetRoomPos = WorldUtilsRoomManager.CurrentRoom.GridPosition + doorLeadsTo;
+        Vector2I targetRoomPos = WorldUtilsRoomManager.CurrentRoom.GridPosition + doorLocalGrid + doorLeadsTo;
         if ( !WorldUtilsRoomManager.CheckRoomAt(targetRoomPos) )
         {
             GD.PrintErr("Target room is not valid.");
@@ -67,6 +80,8 @@ public partial class World : Node2D
         Vector2 screenSize = WorldUtilsBlackboard.Get<Vector2I>("screen_size");
         Vector2I localGrid = targetRoomPos - WorldUtilsRoomManager.CurrentRoom.GridPosition;
         Vector2 newPos = localGrid * screenSize;
+        if (WorldUtilsRoomManager.CurrentRoom.roomSpace.Is14)
+            newPos += new Vector2(480, 0);
         if (doorLeadsTo == Vector2I.Down)
         {
             newPos += new Vector2(480/2, 42 + 22);
