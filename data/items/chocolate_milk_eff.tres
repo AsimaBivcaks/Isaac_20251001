@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ChocolateMilkEffect" load_steps=3 format=3 uid="uid://bplxcu143a572"]
+
+[ext_resource type="Texture2D" uid="uid://cyyy8hrstlta4" path="res://graphics/items/collectibles_069_chocolatemilk.png" id="1_tv4r6"]
+[ext_resource type="Script" uid="uid://b8d6odg8xvkkd" path="res://src/items/effects/ChocolateMilkEffect.cs" id="2_t6dkq"]
+
+[resource]
+script = ExtResource("2_t6dkq")
+ItemName = "eff_chocolate_milk"
+Description = "Chocolate Milk"
+Icon = ExtResource("1_tv4r6")
+metadata/_custom_type_script = "uid://b8d6odg8xvkkd"

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqgabin20kcjf"]
+
+[ext_resource type="PackedScene" uid="uid://cw3jy4a3t2en7" path="res://scenes/projectiles/tear.tscn" id="1_bg3li"]
+
+[node name="Projectile" instance=ExtResource("1_bg3li")]
+
+[node name="s1" parent="." index="0"]
+self_modulate = Color(0.567616, 0.33988786, 0.14946708, 1)
+
+[node name="s2" parent="." index="1"]
+self_modulate = Color(0.567616, 0.33988786, 0.14946708, 1)

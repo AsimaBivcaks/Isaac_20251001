@@ -1,7 +1,7 @@
 
 public enum BehaviorType{
     Move,
-    Dash,
+    //Dash,
     Attack,
     Melee,
     Summon,
@@ -14,4 +14,5 @@ public enum BehaviorType{
     PlayerUsableManagement,
     PlayerEffectManagement,
     GLEff,
+    RBEff,
 }

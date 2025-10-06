@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 //MUST BE EMITTED BY FACTORY: RAWDIR
+//NOT USED BY THE PLAYER
 public partial class AiredTear : Projectile
 {
     [Export] public float zposVirtual = 120.0f;

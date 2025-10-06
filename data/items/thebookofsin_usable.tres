@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ThebookofsinUsable" load_steps=4 format=3 uid="uid://kk4mv8sh3e83"]
+
+[ext_resource type="Texture2D" uid="uid://de6hekkf26joe" path="res://graphics/items/collectibles_097_bookofsin.png" id="1_b4gyr"]
+[ext_resource type="Resource" uid="uid://b7sp5btpqqqro" path="res://data/pools/thebookofsin_pool.tres" id="2_foovr"]
+[ext_resource type="Script" uid="uid://5d2ic43c8wij" path="res://src/items/usables/ThebookofsinUsable.cs" id="3_uq7mu"]
+
+[resource]
+script = ExtResource("3_uq7mu")
+Pool = ExtResource("2_foovr")
+MaxEnergy = 4
+ItemName = "usable_thebookofsin"
+Description = "The book of sin"
+Icon = ExtResource("1_b4gyr")
+metadata/_custom_type_script = "uid://5d2ic43c8wij"

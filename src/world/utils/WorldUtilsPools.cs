@@ -13,6 +13,7 @@ public static class WorldUtilsPools
         {"proj_e_bloodtear", "res://scenes/projectiles/e_bloodtear.tscn"},
         {"proj_e_aired_bloodtear", "res://scenes/projectiles/e_aired_bloodtear.tscn"},
         {"proj_explosion", "res://scenes/projectiles/explosion.tscn"},
+        {"proj_chocolate_milk_tear", "res://scenes/projectiles/chocolate_milk_tear.tscn"},
 
         {"img_shadow", "res://graphics/shadow.png"},
 
@@ -25,6 +26,10 @@ public static class WorldUtilsPools
         {"eff_innereye", "res://data/items/innereye_eff.tres"},
         {"eff_distant_admiration", "res://data/items/distant_admiration_eff.tres"},
         {"eff_gnawed_leaf", "res://data/items/gnawed_leaf_eff.tres"},
+        {"eff_chocolate_milk", "res://data/items/chocolate_milk_eff.tres"},
+
+        {"usable_thebookofsin", "res://data/items/thebookofsin_usable.tres"},
+        {"usable_razorblade", "res://data/items/razorblade_usable.tres"},
 
         {"pref_distant_admiration", "res://scenes/characters/distant_admiration.tscn"},
         {"pref_knight", "res://scenes/characters/knight.tscn"},
@@ -34,6 +39,8 @@ public static class WorldUtilsPools
         {"pref_selfless_knight", "res://scenes/characters/selfless_knight.tscn"},
 
         {"player", "res://scenes/characters/player.tscn"},
+
+        {"pool_thebookofsin", "res://data/pools/thebookofsin_pool.tres"},
         
         {"room_test", "res://scenes/rooms/basement_0.tscn"},
     };

@@ -3,9 +3,14 @@ using System;
 
 public class PlayerUsableManagementBehavior : CharacterBehavior
 {
-    public UsableItem Item { get; private set; } = null;
+    //TODO: CD time & Use (in _Process)
+    private const double USE_CD = 0.5;
+
+    public UsableItem item { get; private set; } = null;
     public int Energy { get; private set; } = 0;
     public int MaxEnergy { get; private set; } = 0;
+
+    private double useCDTimer = 0;
 
     public PlayerUsableManagementBehavior(Player _self) : base(_self)
     {
@@ -15,28 +20,36 @@ public class PlayerUsableManagementBehavior : CharacterBehavior
     {
         base._Ready();
 
-        Item = null;
+        item = null;
     }
 
     public bool CanFillEnergy()
     {
-        return Item != null && Energy < MaxEnergy;
+        return item != null && Energy < MaxEnergy;
     }
 
     public void FillEnergy(int amount)
     {
-        if (Item != null)
+        if (item != null)
         {
             Energy += amount;
             if (Energy > MaxEnergy) Energy = MaxEnergy;
         }
     }
 
+    public bool TryUseEnergy(int amount=1)
+    {
+        if (Energy < amount) return false;
+        Energy -= amount;
+        return true;
+    }
+
     public void SetItem(UsableItem newItem)
     {
-        WorldUtilsSpawn.SpawnItem(self.Mount, self.Position, Item, false);
+        if (item != null)
+            WorldUtilsSpawn.SpawnItem(self.Mount, self.Position, item, false);
 
-        Item = newItem;
+        item = newItem;
         if (MaxEnergy == 0)
         {
             MaxEnergy = newItem.MaxEnergy;
@@ -52,12 +65,27 @@ public class PlayerUsableManagementBehavior : CharacterBehavior
 
     public bool UseItem(Player player)
     {
-        if (Item != null)
+        if (item != null)
         {
-            Item.OnUse(player);
-            Item = null;
+            item.OnUse(player);
+            item = null;
             return true;
         }
         return false;
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (useCDTimer >= 0)
+            useCDTimer -= delta;
+        else
+        {
+            if(Input.IsActionJustPressed("interact") && item != null)
+            {
+                item.OnUse((Player)self);
+            }
+        }
     }
 }

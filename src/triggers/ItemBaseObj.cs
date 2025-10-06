@@ -16,7 +16,10 @@ public partial class ItemBaseObj : InteractableObj
 
     public override void OnPlayerInteract(Player player)
     {
-        item?.OnPlayerGet(player);
+        if(item != null)
+        {
+            item.CallDeferred("OnPlayerGet", player);
+        }
         sprite.Visible = false;
         item = null;
     }

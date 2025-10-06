@@ -7,9 +7,14 @@ public abstract partial class UsableItem : Item
 {
     [Export] public int MaxEnergy = 1;
 
+    protected PlayerUsableManagementBehavior usableManager;
+
     public override void OnPlayerGet(Player player)
     {
-        var usableManager = player.GetBehavior<PlayerUsableManagementBehavior>(BehaviorType.PlayerUsableManagement);
+        if (usableManager == null)
+        {
+            usableManager = player.GetBehavior<PlayerUsableManagementBehavior>(BehaviorType.PlayerUsableManagement);
+        }
         if (usableManager != null)
         {
             usableManager.SetItem(this);

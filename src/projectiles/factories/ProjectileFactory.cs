@@ -5,7 +5,7 @@ using System;
 
 public abstract class ProjectileFactory
 {
-    public abstract void Emit(Character owner, Vector2 direction);
+    public abstract Projectile[] Emit(Character owner, Vector2 direction);
 
     protected Projectile CreateProjectile(Character owner, Vector2 psu_dir, PackedScene projectileScene)
     {

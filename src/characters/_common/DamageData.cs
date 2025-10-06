@@ -7,6 +7,7 @@ public enum DamageType
     NORMAL,
     FIRE,
     EXPLOSION,
+    RAZOR,
 }
 
 public record DamageData(

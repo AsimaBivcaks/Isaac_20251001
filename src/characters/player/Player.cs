@@ -61,7 +61,8 @@ public partial class Player : Character
         AddBehavior(new PlayerUsableManagementBehavior(this), BehaviorType.PlayerUsableManagement);
         AddBehavior(new PlayerEffectManagementBehavior(this), BehaviorType.PlayerEffectManagement);
         
-        projectileFactory = new ProjectileFactoryNormal(WorldUtilsPools.GetResource<PackedScene>("proj_tear"));
+        var baseFactory = new ProjectileFactoryNormal(WorldUtilsPools.GetResource<PackedScene>("proj_tear"));
+        projectileFactory = new ProjectileFactoryComposite(baseFactory);
 
         EndReady();
 
@@ -76,6 +77,6 @@ public partial class Player : Character
         WorldUtilsRoomManager.RoomMount = Mount;
         WorldUtilsRoomManager.LoadRoomAt("room_test", 0, 0);
         WorldUtilsRoomManager.SetCurrentRoom(0, 0);
-        WorldUtilsSpawn.SpawnItem(Mount, new Vector2(200, 200), WorldUtilsPools.GetResource<Item>("eff_gnawed_leaf"));
+        WorldUtilsSpawn.SpawnItem(Mount, new Vector2(200, 200), WorldUtilsPools.GetResource<Item>("usable_razorblade"));
     }
 }

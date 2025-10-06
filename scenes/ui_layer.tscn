@@ -45,6 +45,7 @@ centered = false
 
 [node name="Icon" type="Sprite2D" parent="UI/UsableStat"]
 position = Vector2(3, 3)
+centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/UsableStat"]
 clip_children = 2

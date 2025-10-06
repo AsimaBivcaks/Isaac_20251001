@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class CommonEnemyHPBehavior : CharacterHPBehavior
+public class CommonEnemyHPBehavior : EnemyHPBehavior
 {
     public CommonEnemyHPBehavior(Character _self, int maxHP, Callable? deathCallback=null) : base(_self, maxHP, deathCallback)
     {

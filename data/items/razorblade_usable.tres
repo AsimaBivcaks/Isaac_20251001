@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RazorBladeUsable" load_steps=3 format=3 uid="uid://br7j8fd6xu776"]
+
+[ext_resource type="Texture2D" uid="uid://bma0uoe7kfvif" path="res://graphics/items/collectibles_126_razorblade.png" id="1_gq70u"]
+[ext_resource type="Script" uid="uid://d4ewyv03osy5q" path="res://src/items/usables/RazorBladeUsable.cs" id="2_qdiji"]
+
+[resource]
+script = ExtResource("2_qdiji")
+ItemName = "usable_razorblade"
+Description = "Razor Blade"
+Icon = ExtResource("1_gq70u")
+metadata/_custom_type_script = "uid://d4ewyv03osy5q"

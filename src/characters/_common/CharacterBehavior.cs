@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class CharacterBehavior
 {
+    public BehaviorType type;
     public Character self { get; private set; }
 
     //BlackBoards

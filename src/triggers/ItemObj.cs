@@ -6,6 +6,7 @@ public partial class ItemObj : TriggerObj
     //private const float MAX_VELOCITY = 80.0f;
     //private const float FRICTION = 0.85f;
     private const float JELLY_SQUEEZE_STRENGTH = 7f;
+    private const double INIT_INACTIVE_TIME = .3f;
 
     [Export] public Item item;
 
@@ -16,6 +17,7 @@ public partial class ItemObj : TriggerObj
     //private Texture2D itemTexture;
 
     //private Vector2 Velocity = Vector2.Zero;
+    private double loadedTime = 0;
 
     public override void _Ready()
     {
@@ -48,6 +50,8 @@ public partial class ItemObj : TriggerObj
         Position += collTest.Position;
         collTest.Position = Vector2.Zero;
 
+        if (loadedTime <= INIT_INACTIVE_TIME) loadedTime += delta;
+
         JellyEffect?._Process((float)delta);
     }
 
@@ -74,9 +78,10 @@ public partial class ItemObj : TriggerObj
 
     public bool Get(Player player)
     {
+        if (loadedTime < INIT_INACTIVE_TIME) return false;
         if (item.IsPickable(player))
         {
-            item.OnPlayerGet(player);
+            item.CallDeferred("OnPlayerGet", player);
             return true;
         }
         return false;

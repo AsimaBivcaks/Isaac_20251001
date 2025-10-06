@@ -8,6 +8,9 @@ public static class WorldUtilsRoomManager
     public static Room[,] Rooms = new Room[10,10];
     public static Node RoomMount { set; private get; } = null;
 
+    public delegate void SR(Room originalRoom, Room newRoom);
+    public static event SR RoomSwitched = new SR(OnSwitchRoom);
+
     public static void AutoSetCurrentRoom(Vector2 playerGlobalPosition)
     {
         if ( RoomMount == null ) return;
@@ -74,6 +77,7 @@ public static class WorldUtilsRoomManager
         Room room = Rooms[x,y];
         if ( room == null || room == CurrentRoom || RoomMount == null )
             return;
+        Room originalRoom = CurrentRoom;
         if ( CurrentRoom != null )
         {
             CurrentRoom.OnExitRoom();
@@ -82,6 +86,7 @@ public static class WorldUtilsRoomManager
         RoomMount.AddChild(room);
         CurrentRoom = room;
         CurrentRoom.OnEnterRoom();
+        RoomSwitched(originalRoom, room);
     }
 
     public static void ClearLoadedRooms(bool forced = false)
@@ -93,5 +98,9 @@ public static class WorldUtilsRoomManager
                     Rooms[i,j].QueueFree();
                     Rooms[i,j] = null;
                 }
+    }
+
+    private static void OnSwitchRoom(Room r1, Room r2)
+    {
     }
 }

@@ -19,7 +19,7 @@ public partial class Tear : Projectile
     {
         if(statusF["disabled"] > .5f) return;
         target.GetBehavior<CharacterHPBehavior>(BehaviorType.HP).TakeDamage(
-            new DamageData(attacker, (int)statusF["damage"], DamageType.NORMAL, Velocity.Normalized() * knockbackForce)
+            new DamageData(attacker, (int)Math.Max(1,statusF["damage"]), DamageType.NORMAL, Velocity.Normalized() * knockbackForce)
         );
         statusF["disabled"] = 1;
     }

@@ -14,42 +14,26 @@ public partial class InnerEyeEffect : EffectItem
     {
         if (uniqueFactory == null)
         {
-            uniqueFactory = new ProjectileFactoryInnerEye(player.projectileFactory);
+            uniqueFactory = new ProjectileFactoryInnerEye();
             uniqueFactory.EmitCountPerSide = 0;
             uniqueFactory.EmitDisperse = EmitDisperse;
         }
         if (effectManager.GetEffectCount(this) == 0) //first one
         {
-            uniqueFactory.originalFactory = player.projectileFactory;
-            player.projectileFactory = uniqueFactory;
             player.statusF["fire_rate"] *= 0.7f;
         }
         uniqueFactory.EmitCountPerSide += EmitCountPerSide;
+        if ((player.projectileFactory as ProjectileFactoryComposite).HasModifier(uniqueFactory))
+            (player.projectileFactory as ProjectileFactoryComposite).AddModifier(uniqueFactory);
     }
 
     public override void OnRemove(Player player)
     {
         if (effectManager.GetEffectCount(this) == 1) //last one
         {
-            var factory = player.projectileFactory;
-            ProjectileFactoryModifier lastModifier = null;
-            while (factory is ProjectileFactoryModifier modifier)
-            {
-                if (modifier == uniqueFactory)
-                {
-                    if (lastModifier != null)
-                    {
-                        lastModifier.originalFactory = modifier.originalFactory;
-                    }
-                    else
-                    {
-                        player.projectileFactory = modifier.originalFactory;
-                    }
-                    break;
-                }
-                lastModifier = modifier;
-                factory = modifier.originalFactory;
-            }
+            uniqueFactory.EmitCountPerSide = 0;
+            var factory = player.projectileFactory as ProjectileFactoryComposite;
+            factory?.RemoveModifier(uniqueFactory);
             player.statusF["fire_rate"] /= 0.7f;
         }
         else

@@ -53,6 +53,8 @@ public partial class UIUsableStat : Control
                 usable = player.GetBehavior<PlayerUsableManagementBehavior>(BehaviorType.PlayerUsableManagement);
             }
             else return;
+            if (usable == null)
+                return;
         }
 
         if (!Visible)
@@ -63,13 +65,13 @@ public partial class UIUsableStat : Control
             }
             else return;
         }
-        else if (usable.MaxEnergy <= 0 || usable.Item == null)
+        else if (usable.MaxEnergy <= 0 || usable.item == null)
         {
             Visible = false;
             return;
         }
 
-        icon.Texture = usable.Item.Icon;
+        icon.Texture = usable.item.Icon;
         slots.Frame = slot_frames[Math.Clamp(usable.MaxEnergy, 0, slot_frames.Length - 1)];
         bar.Position = 
             new Vector2(0,

@@ -50,6 +50,8 @@ public partial class UIHpStat : Control
                 Visible = true;
             }
             else return;
+            if (hp == null)
+                return;
         }
 
         for (int i = 0; i < 12; i++)

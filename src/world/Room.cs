@@ -26,7 +26,7 @@ public partial class Room : Node2D
         if (obj != null)
         {
             trackedItems.Add(obj);
-            AddChild(obj);
+            //AddChild(obj);
         }
     }
 

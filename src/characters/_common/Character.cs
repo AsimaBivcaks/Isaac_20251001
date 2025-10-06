@@ -16,6 +16,8 @@ public abstract partial class Character : CharacterBody2D
     //but honestly the task of implementing item "Chocolate Milk" really scared the shxt out of me
     readonly protected List<CharacterBehavior> behaviors = new List<CharacterBehavior>();
     readonly protected Dictionary<BehaviorType, CharacterBehavior> behaviorMap = new Dictionary<BehaviorType, CharacterBehavior>();
+    private List<CharacterBehavior> aboutToRemove = new List<CharacterBehavior>();
+    private List<CharacterBehavior> aboutToAdd = new List<CharacterBehavior>();
 
     //ALWAYS CALL PlugIn & UnPlug WHEN CHANGING THESE MANUALLY
     
@@ -24,11 +26,19 @@ public abstract partial class Character : CharacterBody2D
     public ProjectileFactory projectileFactory;
     public Node Mount; //the node for summon to attach to
 
-    public void AddBehavior(CharacterBehavior behavior, BehaviorType type)
+    public void AddBehavior(CharacterBehavior behavior, BehaviorType type, bool immediate=true)
     {
-        behaviors.Add(behavior);
-        behaviorMap[type] = behavior;
-        behavior.PlugIn();
+        behavior.type = type;
+        if(immediate)
+        {
+            behaviors.Add(behavior);
+            behaviorMap[behavior.type] = behavior;
+            behavior.PlugIn();
+        }
+        else
+        {
+            aboutToAdd.Add(behavior);
+        }
     }
 
     public CharacterBehavior GetBehavior(BehaviorType behaviorType)
@@ -47,18 +57,14 @@ public abstract partial class Character : CharacterBody2D
 
     public void RemoveBehavior(CharacterBehavior behavior)
     {
-        behaviors.Remove(behavior);
-        behaviorMap.Remove(behaviorMap.First(kv => kv.Value == behavior).Key);
-        behavior.UnPlug();
+        aboutToRemove.Add(behavior);
     }
 
     public void RemoveBehavior(BehaviorType behaviorType)
     {
         if(behaviorMap.ContainsKey(behaviorType)){
             var behavior = behaviorMap[behaviorType];
-            behaviors.Remove(behavior);
-            behaviorMap.Remove(behaviorType);
-            behavior.UnPlug();
+            aboutToRemove.Add(behavior);
         }
     }
 
@@ -71,6 +77,7 @@ public abstract partial class Character : CharacterBody2D
 
         statusV["inertia"] = new Vector2(0, 0);
         statusF["pause"] = 0; //1 for paused, 0 for not paused
+        
     }
     
     protected void EndReady(){
@@ -86,6 +93,23 @@ public abstract partial class Character : CharacterBody2D
 
         foreach (CharacterBehavior behavior in behaviors)   
             behavior._Process(delta);
+        
+        foreach (CharacterBehavior behavior in aboutToAdd)
+        {
+            behaviors.Add(behavior);
+            behaviorMap[behavior.type] = behavior;
+            behavior.PlugIn();
+        }
+
+        foreach (CharacterBehavior behavior in aboutToRemove)
+        {
+            behaviors.Remove(behavior);
+            behaviorMap.Remove(behavior.type);
+            behavior.UnPlug();
+        }
+
+        aboutToAdd.Clear();
+        aboutToRemove.Clear();
     }
 
     public void Move(double delta, bool considerinertia=true){

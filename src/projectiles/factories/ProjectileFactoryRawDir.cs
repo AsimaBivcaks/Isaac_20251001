@@ -1,16 +1,14 @@
 using Godot;
 using System;
 
-public class ProjectileFactoryRawDir : ProjectileFactory
+public class ProjectileFactoryRawDir : ProjectileFactoryConcrete
 {
-    public PackedScene projectileScene;
 
-    public ProjectileFactoryRawDir(PackedScene scene)
+    public ProjectileFactoryRawDir(PackedScene scene) : base(scene)
     {
-        projectileScene = scene;
     }
     
-    public override void Emit(Character owner, Vector2 direction)
+    public override Projectile[] Emit(Character owner, Vector2 direction)
     {
         Projectile p = CreateProjectile(owner,
             direction,
@@ -18,5 +16,6 @@ public class ProjectileFactoryRawDir : ProjectileFactory
         p.Velocity = direction;
         p.Position = owner.Position + new Vector2(0,-3) + WorldUtilsRandom.RandomInDisc(10f);
         owner.Mount.AddChild(p);
+        return new Projectile[] { p };
     }
 }

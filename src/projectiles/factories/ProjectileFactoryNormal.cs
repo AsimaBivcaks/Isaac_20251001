@@ -1,16 +1,14 @@
 using Godot;
 using System;
 
-public class ProjectileFactoryNormal : ProjectileFactory
+public class ProjectileFactoryNormal : ProjectileFactoryConcrete
 {
-    public PackedScene projectileScene;
 
-    public ProjectileFactoryNormal(PackedScene scene)
+    public ProjectileFactoryNormal(PackedScene scene) : base(scene)
     {
-        projectileScene = scene;
     }
     
-    public override void Emit(Character owner, Vector2 direction)
+    public override Projectile[] Emit(Character owner, Vector2 direction)
     {
         Projectile p = CreateProjectile(owner,
             direction + SolveInertia(owner.Velocity.Normalized(), direction, .3f, .7f),
@@ -21,5 +19,6 @@ public class ProjectileFactoryNormal : ProjectileFactory
         owner.Mount.AddChild(p);
         //damn magic nums
         //idk how 2 export them elegantly
+        return new Projectile[] { p };
     }
 }
