@@ -48,6 +48,7 @@ public partial class Player : Character
             this,
             6,
             Callable.From(() => {
+                if(debugToggle) return;
                 anim.ShowDeath(3, 3f, Callable.From(() => {
                     //GetTree().ChangeSceneToFile("res://scenes/menus/GameOver.tscn");
                     GetTree().Quit();
@@ -65,5 +66,17 @@ public partial class Player : Character
         projectileFactory = new ProjectileFactoryComposite(baseFactory);
 
         EndReady();
+    }
+
+    private bool debugToggle = false;
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (Input.IsActionJustPressed("debug_player_invincible"))
+        {
+            debugToggle = !debugToggle;
+        }
     }
 }
