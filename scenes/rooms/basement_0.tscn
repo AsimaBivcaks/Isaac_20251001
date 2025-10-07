@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://8lt0o8arnumf" path="res://src/world/generate/EnemySpawn.cs" id="2_5im32"]
 [ext_resource type="Resource" uid="uid://b03ofajf01aob" path="res://data/pools/roomclear_pool.tres" id="2_j0b2f"]
 [ext_resource type="Texture2D" uid="uid://1xac36aotu2p" path="res://graphics/world/props_01_basement.png" id="2_t3qpy"]
-[ext_resource type="Resource" uid="uid://cvth15rfoyv5d" path="res://data/pools/test_flyonly.tres" id="4_j0b2f"]
+[ext_resource type="Resource" uid="uid://pdew5pvkvss2" path="res://data/pools/enemy_normal_equalchance.tres" id="5_j0b2f"]
 [ext_resource type="PackedScene" uid="uid://c053n08tevtyp" path="res://scenes/misc/stone.tscn" id="7_sinwk"]
 [ext_resource type="PackedScene" uid="uid://wp1yuha4u5x5" path="res://scenes/misc/door.tscn" id="9_j0b2f"]
 
@@ -173,7 +173,7 @@ roomSpace = ExtResource("2_0be07")
 [node name="Marker2D" type="Marker2D" parent="Spawns1"]
 position = Vector2(238, 140)
 script = ExtResource("2_5im32")
-Pool = ExtResource("4_j0b2f")
+Pool = ExtResource("5_j0b2f")
 
 [node name="Fixed" type="Node2D" parent="."]
 z_index = -100

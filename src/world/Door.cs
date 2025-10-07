@@ -28,7 +28,6 @@ public partial class Door : Node2D
     {
         base._Ready();
 
-        //TEMP
         room = WorldUtilsRoomManager.CurrentRoom;
 
         unlock = GetNode<DoorTriggerObj>(UnlockPath);

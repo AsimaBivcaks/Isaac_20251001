@@ -21,7 +21,7 @@
 layer = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.2627451)
+modulate = Color(1, 1, 1, 0.17254902)
 scale = Vector2(2, 2)
 texture = ExtResource("1_sahi7")
 centered = false

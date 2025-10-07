@@ -7,7 +7,8 @@ public partial class Room : Node2D
     [Export] public NodePath[] SpawnGroups;
     [Export] public SpawnPool roomClearPool;
 
-    public Vector2I GridPosition; //the grid position of the room in the world
+    public Vector2I GridPosition; //the grid position of the room's top-left corner in the world
+    //for Room14, it's the top-right corner
 
     [Export] public RoomSpace roomSpace;
 
@@ -60,7 +61,10 @@ public partial class Room : Node2D
                     GD.Print("Room cleared, spawning ", spawn);
                     if (spawn != null)
                     {
-                        AddItem(spawn, GlobalPosition + WorldUtilsBlackboard.Get<Vector2I>("screen_size") / 2);
+                        if (!roomSpace.Is14)
+                            AddItem(spawn, GlobalPosition + WorldUtilsBlackboard.Get<Vector2I>("screen_size") / 2);
+                        else
+                            AddItemBase(spawn, GlobalPosition + WorldUtilsBlackboard.Get<Vector2I>("screen_size") / 2 + new Vector2(480, 0));
                     }
                 }
                 var ub = player.GetBehavior<PlayerUsableManagementBehavior>(BehaviorType.PlayerUsableManagement);

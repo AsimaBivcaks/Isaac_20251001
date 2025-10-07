@@ -30,9 +30,8 @@ project/assembly_name="20250929_isaac"
 folder_colors={
 "res://data/": "blue",
 "res://graphics/": "teal",
-"res://misc/": "gray",
 "res://scenes/": "green",
-"res://sfx/": "yellow",
+"res://sound/": "yellow",
 "res://src/": "red"
 }
 

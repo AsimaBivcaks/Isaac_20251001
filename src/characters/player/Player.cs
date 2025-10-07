@@ -65,12 +65,5 @@ public partial class Player : Character
         projectileFactory = new ProjectileFactoryComposite(baseFactory);
 
         EndReady();
-
-        //TEMP
-        CallDeferred(nameof(TEMPtest));
-    }
-
-    public void TEMPtest()
-    {
     }
 }

@@ -6,4 +6,5 @@
 script = ExtResource("1_5qi7i")
 PoolName = "enemy_normal_equalchance"
 Items = PackedStringArray("pref_knight", "pref_nerveending", "pref_red_fly", "pref_selfless_knight")
+Weights = PackedFloat32Array(0.8, 0.8, 1, 0.2)
 metadata/_custom_type_script = "uid://bbtallcdqe8ci"

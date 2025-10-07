@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpawnPool" load_steps=2 format=3 uid="uid://cco4c3kfshvgp"]
+
+[ext_resource type="Script" uid="uid://bbtallcdqe8ci" path="res://src/world/generate/SpawnPool.cs" id="1_b751o"]
+
+[resource]
+script = ExtResource("1_b751o")
+PoolName = "possible_tools"
+Items = PackedStringArray("eff_innereye", "eff_distant_admiration", "eff_gnawed_leaf", "eff_chocolate_milk", "usable_thebookofsin", "usable_razorblade", "")
+Weights = PackedFloat32Array(1, 1, 1, 1, 1, 1, 24)
+metadata/_custom_type_script = "uid://bbtallcdqe8ci"

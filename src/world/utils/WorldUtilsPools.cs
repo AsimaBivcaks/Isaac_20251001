@@ -1,6 +1,8 @@
 using Godot;
 using System.Collections.Generic;
 
+//maybe writing these in a json file would be better?
+//i dont have time for that though
 public static class WorldUtilsPools
 {
     public readonly static Dictionary<string, string> resourcePaths = new Dictionary<string, string>()
@@ -49,6 +51,11 @@ public static class WorldUtilsPools
         {"room_5", "res://scenes/rooms/r5_0.tscn"},
         {"room_1tre", "res://scenes/rooms/r_1tre.tscn"},
         {"room_boss", "res://scenes/rooms/r_boss.tscn"},
+        {"room_15", "res://scenes/rooms/r15_0.tscn"},
+        {"room_14", "res://scenes/rooms/r14.tscn"},
+        {"room_11", "res://scenes/rooms/r11_0.tscn"},
+        {"room_13", "res://scenes/rooms/r13_0.tscn"},
+        {"room_7", "res://scenes/rooms/r7_0.tscn"},
     };
 
     public readonly static Dictionary<string, string> roomSpacePaths = new Dictionary<string, string>()
@@ -60,6 +67,11 @@ public static class WorldUtilsPools
         {"room_5", "res://data/rooms/rs1010.tres"},
         {"room_1tre", "res://data/rooms/rs1000.tres"},
         {"room_boss", "res://data/rooms/rs1000.tres"},
+        {"room_15", "res://data/rooms/rs1111.tres"},
+        {"room_14", "res://data/rooms/rs14.tres"},
+        {"room_11", "res://data/rooms/rs1101.tres"},
+        {"room_13", "res://data/rooms/rs1011.tres"},
+        {"room_7", "res://data/rooms/rs1110.tres"},
     };
 
     public readonly static Dictionary<string, int> forcedRoomIcons = new Dictionary<string, int>()

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomSpace" load_steps=2 format=3 uid="uid://bqcdijin4ddw7"]
+
+[ext_resource type="Script" uid="uid://crstjppxt6gs2" path="res://src/world/RoomSpace.cs" id="1_c2g4d"]
+
+[resource]
+script = ExtResource("1_c2g4d")
+RoomSizeScreens = Vector2i(2, 2)
+RoomGap = true
+RoomGapPosition = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://crstjppxt6gs2"
