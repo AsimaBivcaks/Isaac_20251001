@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Monstro : BossCharacter, IShadow
 {
@@ -13,6 +14,7 @@ public partial class Monstro : BossCharacter, IShadow
         base._Ready();
 
         AddBehavior(new CommonEnemyHPBehavior(this, 500, Callable.From(() => {
+            WorldUtilsBlackboard.Get<List<Character>>("current_bosses").Remove(this);
             QueueFree();
         })), BehaviorType.HP);
         AddBehavior(new CommonEnemyMeleeBehavior(this, GetNode<Area2D>(meleeArea)), BehaviorType.Melee);

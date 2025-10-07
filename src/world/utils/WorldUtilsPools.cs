@@ -43,13 +43,38 @@ public static class WorldUtilsPools
 
         {"pool_thebookofsin", "res://data/pools/thebookofsin_pool.tres"},
         
+        {"room_start", "res://scenes/rooms/r_s.tscn"},
         {"room_test", "res://scenes/rooms/basement_0.tscn"},
+        {"room_3", "res://scenes/rooms/r3_0.tscn"},
+        {"room_5", "res://scenes/rooms/r5_0.tscn"},
+        {"room_1tre", "res://scenes/rooms/r_1tre.tscn"},
+        {"room_boss", "res://scenes/rooms/r_boss.tscn"},
     };
 
     public readonly static Dictionary<string, string> roomSpacePaths = new Dictionary<string, string>()
     {
         //rs LT RT LB RB .tres
+        {"room_start", "res://data/rooms/rs1000.tres"},
         {"room_test", "res://data/rooms/rs1000.tres"},
+        {"room_3", "res://data/rooms/rs1100.tres"},
+        {"room_5", "res://data/rooms/rs1010.tres"},
+        {"room_1tre", "res://data/rooms/rs1000.tres"},
+        {"room_boss", "res://data/rooms/rs1000.tres"},
+    };
+
+    public readonly static Dictionary<string, int> forcedRoomIcons = new Dictionary<string, int>()
+    {
+        {"room_1tre", 4},
+        {"room_boss", 9},
+    };
+
+    public readonly static Dictionary<string, int> itemIcons = new Dictionary<string, int>()
+    {
+        {"item_heart", 24},
+        {"item_bomb", 31},
+        {"item_coin", 0},
+        {"item_key", 30},
+        {"item_battery", 47},
     };
 
     public static T GetResource<T>(string key) where T : class
@@ -68,6 +93,15 @@ public static class WorldUtilsPools
             return GD.Load<RoomSpace>(roomSpacePaths[roomName]);
         }
         return null;
+    }
+
+    public static int FixedRoomIcon(string roomName, int icon = 82)
+    {
+        if (forcedRoomIcons.ContainsKey(roomName))
+        {
+            return forcedRoomIcons[roomName];
+        }
+        return icon;
     }
 
     static WorldUtilsPools()

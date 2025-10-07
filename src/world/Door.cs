@@ -47,16 +47,21 @@ public partial class Door : Node2D
         if (!WorldUtilsRoomManager.CheckRoomAt( room.GridPosition + LocalGrid + LeadsTo ))
         {
             var filler = WorldUtilsPools.GetResource<PackedScene>("doorfiller")?.Instantiate<DoorFiller>();
-            if (filler == null)
-            {
-                GD.PrintErr("Failed to instance DoorFiller");
-                return;
-            }
+            //if (filler == null) return; //let me see the error
             filler.LocalGrid = LocalGrid;
             filler.LeadsTo = LeadsTo;
             room.AddChild(filler);
             QueueFree();
             return;
+        }
+        
+        var target = room.GridPosition + LocalGrid + LeadsTo;
+        if (WorldUtilsRoomManager.LockedRooms.Contains(target))
+        {
+            Locked = true;
+            Room rm = WorldUtilsRoomManager.Rooms[target.X, target.Y];
+            if (rm != null && rm.RoomCleared)
+                Locked = false;
         }
 
         OpenAllowed = false;

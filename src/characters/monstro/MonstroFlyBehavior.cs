@@ -16,7 +16,7 @@ public class MonstroFlyBehavior : CharacterBehavior
     {
         stateMachine = _stateMachine;
         pfFountain = new ProjectileFactoryFountain(
-            WorldUtilsPools.GetResource<PackedScene>("proj_tear")
+            WorldUtilsPools.GetResource<PackedScene>("proj_e_bloodtear")
         );
     }
 

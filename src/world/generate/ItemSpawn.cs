@@ -8,7 +8,10 @@ public partial class ItemSpawn : Spawn
         Item item = Pool.Roll<Item>();
         if (item != null)
         {
-            room.AddItem(item, GlobalPosition);
+            if(item is EffectItem || item is UsableItem)
+                room.AddItemBase(item, GlobalPosition);
+            else
+                room.AddItem(item, GlobalPosition);
         }
     }
 }

@@ -17,4 +17,9 @@ public static class MiscUtils
     {
         return new Vector2(a.X, -a.Y);
     }
+
+    public static int AxisDistance(Vector2I a, Vector2I b)
+    {
+        return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
+    }
 }

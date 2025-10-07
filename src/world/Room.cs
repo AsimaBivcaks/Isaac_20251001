@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public partial class Room : Node2D
 {
     [Export] public NodePath[] SpawnGroups;
+    [Export] public SpawnPool roomClearPool;
 
     public Vector2I GridPosition; //the grid position of the room in the world
 
@@ -14,12 +15,17 @@ public partial class Room : Node2D
 
     protected bool firstTimeEntered = true;
     
+    private bool hadEmenies = false;
+
+    public bool RoomCleared = false;
+    
     public int EnemyCount;
     public List<TriggerObj> trackedItems = new List<TriggerObj>();
 
     public void AddCharacter(Character character)
     {
         EnemyCount++;
+        hadEmenies = true;
         AddChild(character);
     }
 
@@ -29,6 +35,7 @@ public partial class Room : Node2D
         if (character != null)
         {
             EnemyCount++;
+            hadEmenies = true;
         }
     }
 
@@ -45,12 +52,39 @@ public partial class Room : Node2D
                     door.RoomCleared();
                 }
             }
+            if (hadEmenies)
+            {
+                if (roomClearPool != null)
+                {
+                    Item spawn = roomClearPool.Roll<Item>();
+                    GD.Print("Room cleared, spawning ", spawn);
+                    if (spawn != null)
+                    {
+                        AddItem(spawn, GlobalPosition + WorldUtilsBlackboard.Get<Vector2I>("screen_size") / 2);
+                    }
+                }
+                var ub = player.GetBehavior<PlayerUsableManagementBehavior>(BehaviorType.PlayerUsableManagement);
+                if (ub != null)
+                {
+                    ub.FillEnergy(1);
+                }
+            }
+            RoomCleared = true;
         }
     }
 
+    private Item tempItem = null;
+    private Vector2 tempItemPos;
     public void AddItem(Item item, Vector2 globalPosition)
     {
-        TriggerObj obj = WorldUtilsSpawn.SpawnItem(this, globalPosition, item);
+        tempItem = item;
+        tempItemPos = globalPosition;
+        CallDeferred("AddItemDeferred");
+    }
+
+    private void AddItemDeferred()
+    {
+        TriggerObj obj = WorldUtilsSpawn.SpawnItem(this, tempItemPos, tempItem);
         if (obj != null)
         {
             trackedItems.Add(obj);
@@ -60,7 +94,14 @@ public partial class Room : Node2D
 
     public void AddItemBase(Item item, Vector2 globalPosition)
     {
-        TriggerObj obj = WorldUtilsSpawn.SpawnItemBase(this, globalPosition, item);
+        tempItem = item;
+        tempItemPos = globalPosition;
+        CallDeferred("AddItemBaseDeferred");
+    }
+
+    private void AddItemBaseDeferred()
+    {
+        TriggerObj obj = WorldUtilsSpawn.SpawnItemBase(this, tempItemPos, tempItem);
         if (obj != null)
         {
             trackedItems.Add(obj);

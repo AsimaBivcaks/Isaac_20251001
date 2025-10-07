@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpawnPool" load_steps=2 format=3 uid="uid://b03ofajf01aob"]
+
+[ext_resource type="Script" uid="uid://bbtallcdqe8ci" path="res://src/world/generate/SpawnPool.cs" id="1_ov5bw"]
+
+[resource]
+script = ExtResource("1_ov5bw")
+PoolName = "roomclear"
+Items = PackedStringArray("item_heart", "item_bomb", "item_coin", "item_key", "")
+Weights = PackedFloat32Array(1, 1, 1, 1, 3)
+metadata/_custom_type_script = "uid://bbtallcdqe8ci"

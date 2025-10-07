@@ -1,14 +1,18 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 //specially for world generation and other non-deterministic (but consistent) things
 public static class WorldUtilsRng
 {
     private static Random rng;
+    private static int seed = 0;
+    public static int Seed => seed;
 
     public static void Init(int seed)
     {
         rng = new Random(seed);
+        WorldUtilsRng.seed = seed;
     }
 
     public static float RandomRange(float min, float max)

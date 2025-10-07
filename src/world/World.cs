@@ -20,8 +20,9 @@ public partial class World : Node2D
         }
         Instance = this;
 
-        WorldUtilsRandom.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007));
-        WorldUtilsRng.Init((int)(Time.GetUnixTimeFromSystem() * 10000000007 * 31));
+        WorldUtilsRandom.Init((int)(Time.GetUnixTimeFromSystem()));
+        WorldUtilsRng.Init((int)(Time.GetUnixTimeFromSystem()));
+        GD.Print("World RNG Seed: ", WorldUtilsRng.Seed);
         WorldUtilsRoomManager.RoomMount = this;
         generator.roomPool = roomPool;
 
@@ -38,7 +39,7 @@ public partial class World : Node2D
         var player = playerScene.Instantiate<Player>();
         if ( player == null ) return;
         player.Mount = this;
-        player.GlobalPosition = new Vector2(84, 87);
+        player.GlobalPosition = new Vector2(480/2, 270/2);
         AddChild(player);
 
         PackedScene hudScene = WorldUtilsPools.GetResource<PackedScene>("hud");

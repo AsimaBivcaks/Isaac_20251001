@@ -14,7 +14,7 @@ public class MonstroFireBehavior : CharacterBehavior
     {
         stateMachine = _stateMachine;
         pfRawDir = new ProjectileFactoryRawDir(
-            WorldUtilsPools.GetResource<PackedScene>("proj_tear")
+            WorldUtilsPools.GetResource<PackedScene>("proj_e_aired_bloodtear")
         );
     }
 

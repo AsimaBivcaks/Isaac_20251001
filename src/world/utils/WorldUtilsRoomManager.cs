@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 //For Room-14 (_|), use its top-right corner as the reference point
 public static class WorldUtilsRoomManager
@@ -20,6 +21,9 @@ public static class WorldUtilsRoomManager
     public static Vector2I[,] RoomArrangementOffsets = new Vector2I[MAX_ROOMS_X, MAX_ROOMS_Y]; //offsets for rooms that are larger than 1x1
     public static Room[,] Rooms = new Room[MAX_ROOMS_X, MAX_ROOMS_Y];
     public static Node RoomMount { set; private get; } = null;
+
+    public static HashSet<Vector2I> LockedRooms = new HashSet<Vector2I>();
+    public static HashSet<Vector2I> BossRooms = new HashSet<Vector2I>();
 
     public delegate void SR(Room originalRoom, Room newRoom);
     public static event SR RoomSwitched = new SR(OnSwitchRoom);
@@ -59,19 +63,26 @@ public static class WorldUtilsRoomManager
         SetCurrentRoom(x,y);
     }*/
 
-    public static void AutoSetCurrentRoom(Vector2I gridPos)
+    public static void AutoSetCurrentRoom(Vector2I gridPos) //(x,y): anywhere in the room
     {
         if ( RoomMount == null ) return;
         //Vector2 screenSize = WorldUtilsBlackboard.Get<Vector2I>("screen_size");
         int x = gridPos.X;
         int y = gridPos.Y;
-        if( x < 0 || x >= MAX_ROOMS_X || y < 0 || y >= MAX_ROOMS_Y )
+        if(string.IsNullOrEmpty(RoomArrangement[x,y]))
+            return;
+        if( IndexBoundCheck(x,y) )
             return;
         if( Rooms[x,y] == null )
         {
             TryLoadRoomAt(RoomArrangement[x,y], x, y);
         }
         SetCurrentRoom(x,y);
+    }
+
+    public static bool IndexBoundCheck(int x, int y)
+    {
+        return x < 0 || x >= MAX_ROOMS_X || y < 0 || y >= MAX_ROOMS_Y;
     }
 
     /*public static bool TryLoadRoomAt(string roomName, int x, int y)
@@ -124,7 +135,7 @@ public static class WorldUtilsRoomManager
         return true;
     }*/
 
-    public static bool TryArrangeRoomAt(string roomName, int x, int y)
+    public static bool TryArrangeRoomAt(string roomName, int x, int y) //(x,y): reference point
     {
         RoomSpace roomSpace = WorldUtilsPools.GetRoomSpace(roomName);
         if ( roomSpace == null )
@@ -137,13 +148,13 @@ public static class WorldUtilsRoomManager
             return TryArrangeRoom14(roomName, x, y);
         
         uint code = RoomSpace.GetCode(roomSpace);
-        if ( (code & 1) != 0 && !string.IsNullOrEmpty(RoomArrangement[x,y]) )
+        if ( (code & 1) != 0 && (IndexBoundCheck(x,y) || !string.IsNullOrEmpty(RoomArrangement[x,y])) )
             return false;
-        if ( (code & 2) != 0 && !string.IsNullOrEmpty(RoomArrangement[x+1,y]) )
+        if ( (code & 2) != 0 && (IndexBoundCheck(x+1,y) || !string.IsNullOrEmpty(RoomArrangement[x+1,y])) )
             return false;
-        if ( (code & 4) != 0 && !string.IsNullOrEmpty(RoomArrangement[x,y+1]) )
+        if ( (code & 4) != 0 && (IndexBoundCheck(x,y+1) || !string.IsNullOrEmpty(RoomArrangement[x,y+1])) )
             return false;
-        if ( (code & 8) != 0 && !string.IsNullOrEmpty(RoomArrangement[x+1,y+1]) )
+        if ( (code & 8) != 0 && (IndexBoundCheck(x+1,y+1) || !string.IsNullOrEmpty(RoomArrangement[x+1,y+1])) )
             return false;
         
         if ( (code & 1) != 0 )
@@ -168,11 +179,11 @@ public static class WorldUtilsRoomManager
     }
     private static bool TryArrangeRoom14(string roomName, int x, int y)
     {
-        if ( !string.IsNullOrEmpty(RoomArrangement[x,y]) )
+        if ( IndexBoundCheck(x,y) || !string.IsNullOrEmpty(RoomArrangement[x,y]) )
             return false;
-        if ( !string.IsNullOrEmpty(RoomArrangement[x,y+1]) )
+        if ( IndexBoundCheck(x,y+1) || !string.IsNullOrEmpty(RoomArrangement[x,y+1]) )
             return false;
-        if ( !string.IsNullOrEmpty(RoomArrangement[x-1,y+1]) )
+        if ( IndexBoundCheck(x-1,y+1) || !string.IsNullOrEmpty(RoomArrangement[x-1,y+1]) )
             return false;
         
         RoomArrangement[x,y] = roomName;
@@ -185,22 +196,18 @@ public static class WorldUtilsRoomManager
         return true;
     }
 
-    public static bool TryLoadRoomAt(string roomName, int x, int y)
+    public static bool TryLoadRoomAt(string roomName, int x, int y) //(x,y): anywhere in the room
     {
         RoomSpace roomSpace = WorldUtilsPools.GetRoomSpace(roomName);
-        if ( roomSpace == null )
-        {
-            GD.PrintErr("Failed to load RoomSpace for room ", roomName);
-            return false;
-        }
+        if ( roomSpace == null ) return false;
 
         uint code = RoomSpace.GetCode(roomSpace);
         Room room = WorldUtilsPools.GetResource<PackedScene>(roomName)?.Instantiate<Room>();
-        if( room == null )
-        {
-            GD.PrintErr("Failed to load Room for room ", roomName);
-            return false;
-        }
+        if( room == null ) return false;
+        Vector2I offset = RoomArrangementOffsets[x,y];
+        x -= offset.X;
+        y -= offset.Y;
+
         room.GridPosition = new Vector2I(x,y);
         if (roomSpace.Is14)
             return LoadRoom14(room, x, y);
@@ -252,6 +259,39 @@ public static class WorldUtilsRoomManager
                     Rooms[i,j].QueueFree();
                     Rooms[i,j] = null;
                 }
+    }
+
+    public static void LockRoomAt(Vector2I gridPos, uint roomCode)
+    {
+        if ( CheckRoomAt(gridPos) && roomCode != 14 )
+        {
+            if ((roomCode & 1) != 0 && !LockedRooms.Contains(gridPos))
+            {
+                LockedRooms.Add(gridPos);
+            }
+            if ((roomCode & 2) != 0 && !LockedRooms.Contains(gridPos + Vector2I.Right))
+            {
+                LockedRooms.Add(gridPos + Vector2I.Right);
+            }
+            if ((roomCode & 4) != 0 && !LockedRooms.Contains(gridPos + Vector2I.Down))
+            {
+                LockedRooms.Add(gridPos + Vector2I.Down);
+            }
+            if ((roomCode & 8) != 0 && !LockedRooms.Contains(gridPos + Vector2I.Right + Vector2I.Down))
+            {
+                LockedRooms.Add(gridPos + Vector2I.Right + Vector2I.Down);
+            }
+        }
+        else if ( roomCode == 14 )
+        {
+            if ( CheckRoomAt(gridPos) && !LockedRooms.Contains(gridPos) )
+                LockedRooms.Add(gridPos);
+            if ( CheckRoomAt(gridPos + Vector2I.Down) && !LockedRooms.Contains(gridPos + Vector2I.Down) )
+                LockedRooms.Add(gridPos + Vector2I.Down);
+            if ( CheckRoomAt(gridPos + Vector2I.Left + Vector2I.Down) && !LockedRooms.Contains(gridPos + Vector2I.Left + Vector2I.Down) )
+                LockedRooms.Add(gridPos + Vector2I.Left + Vector2I.Down);
+        }
+        
     }
 
     private static void OnSwitchRoom(Room r1, Room r2)
